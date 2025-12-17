@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 7325359}
   - component: {fileID: 7325360}
   - component: {fileID: 7325361}
+  - component: {fileID: 7325362}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -228,6 +229,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7325362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d59009992467314bac9f48b2372ebb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &104063385
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +427,9 @@ MonoBehaviour:
   dashSpeed: 25
   dashDuration: 0.5
   dashCooldown: 2
+  isAttacking: 0
+  comboCount: 0
+  max_combo_delay: 2
 --- !u!50 &434504458
 Rigidbody2D:
   serializedVersion: 4

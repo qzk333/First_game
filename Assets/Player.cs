@@ -24,6 +24,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashCooldown;  //冲刺冷却时间
     private float dashCooldownTime;
 
+    [Header("Attack info")]
+    [SerializeField] private bool isAttacking;
+    [SerializeField] private int comboCount;
+    [SerializeField]private float max_combo_delay;              //最大的连击间隔
+    private float comboTime;
+
     private int facingDir = 1;
     private bool facingRight = true;
     // Start is called before the first frame update
@@ -41,7 +47,8 @@ public class Player : MonoBehaviour
         Movement();
 
         dashTime-= Time.deltaTime;
-        dashCooldownTime += Time.deltaTime;
+        dashCooldownTime -= Time.deltaTime;
+        comboTime-= Time.deltaTime;
 
         FlipController();
         AnimatorControllers();
@@ -62,22 +69,52 @@ public class Player : MonoBehaviour
     {
         InputX = Input.GetAxisRaw("Horizontal");
 
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            Attack();
+        }
         if (Input.GetButtonDown("Jump") && jumpCount>0)
         {
             Jump();
         }
-        if (Input.GetKeyDown(KeyCode.L)&&dashCooldownTime>dashCooldown)
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Dash();
+        }
+    }
+
+    private void Dash()
+    {
+        if (dashCooldownTime < 0 && !isAttacking)
         {
             dashTime = dashDuration;
-            dashCooldownTime = 0;
+            dashCooldownTime = dashCooldown;
         }
+    }
+
+    private void Attack()
+    {
+        isAttacking = true;
+        if (comboTime >= 0)
+        {
+            comboCount = (comboCount + 1) % 3;
+        }
+        else
+        {
+            comboCount = 0;
+        }
+        comboTime = max_combo_delay;
     }
 
     private void Movement()
     {
-        if (dashTime > 0)
+        if (isAttacking)
         {
-            rb.velocity = new Vector2(InputX * dashSpeed, 0);
+            rb.velocity = new Vector2(0, 0);
+        }
+        else if (dashTime > 0)
+        {
+            rb.velocity = new Vector2(facingDir * dashSpeed, 0);
         }
         else
         {
@@ -93,11 +130,12 @@ public class Player : MonoBehaviour
 
     private void AnimatorControllers()
     {
-        bool isMove = rb.velocity.x!= 0;
         anim.SetFloat("yVelocity", rb.velocity.y);
-        anim.SetBool("isMove", isMove);
+        anim.SetBool("isMoving", rb.velocity.x != 0);
         anim.SetBool("isGrounded", isGrounded);
-        anim.SetBool("isDash", dashTime > 0);
+        anim.SetBool("isDashing", dashTime > 0);
+        anim.SetBool("isAttacking", isAttacking);
+        anim.SetInteger("comboCount", comboCount);
     }
     
     private void Flip()
@@ -122,5 +160,9 @@ public class Player : MonoBehaviour
     {
         //绘制两点时间的线段
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x,transform.position.y-groundCheckDistance));
+    }
+    public void AttackOver()
+    {
+        isAttacking = false;
     }
 }

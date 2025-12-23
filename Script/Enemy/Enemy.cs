@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public EnemyStateMachine stateMachine { get; private set; }
-
-    bool isAttacking;
-
     [Header("Stunned info")]
     public float stunDuration;
     public Vector2 stunDirection;
@@ -29,8 +25,9 @@ public class Enemy : Entity
     [SerializeField] private float playerCheckDistance;
     [SerializeField] private LayerMask whatIsPlayer;
 
-    private RaycastHit2D isPlayerDetected;
 
+    public EnemyStateMachine stateMachine { get; private set; }
+    public string lastAnimBoolName { get; private set; }
 
     protected override void Awake()
     {
@@ -48,6 +45,11 @@ public class Enemy : Entity
         base.Update();
 
         stateMachine.currentState.Update();
+    }
+
+    public virtual void AssignLastAnimName(string _animBoolName)
+    {
+        lastAnimBoolName = _animBoolName;
     }
 
     public virtual void OpenCounterAttackWindow()

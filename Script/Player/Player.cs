@@ -39,6 +39,13 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
     public PlayerCounterAttack counterAttack { get; private set; }
+
+
+
+
+    public PlayerDeadState deadState { get; private set; }
+
+
     #endregion
     protected override void Awake()
     {
@@ -56,6 +63,11 @@ public class Player : Entity
 
         primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
+
+
+
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
+
     }
 
     protected override void Start()
@@ -104,6 +116,7 @@ public class Player : Entity
         }
     }
 
+    #region doubleJump
     // ÖØÖÃ¶þ¶ÎÌø
     public void ResetDoubleJump()
     {
@@ -121,4 +134,13 @@ public class Player : Entity
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+    #endregion
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deadState);
+    }
+
 }

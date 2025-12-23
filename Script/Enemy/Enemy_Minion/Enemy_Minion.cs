@@ -11,6 +11,10 @@ public class Enemy_Minion : Enemy
     public MinionBattleState battleState { get; private set; }
     public MinionAttackState attackState { get; private set; }
     public MinionStunnedState stunnedState { get; private set; }
+    public MinionDeadState deadState { get; private set; }
+
+
+
     #endregion
 
     protected override void Awake()
@@ -22,6 +26,7 @@ public class Enemy_Minion : Enemy
         battleState = new MinionBattleState(this, stateMachine, "Battle", this);
         attackState = new MinionAttackState(this, stateMachine, "Attack", this);
         stunnedState = new MinionStunnedState(this, stateMachine, "Stunned", this);
+        deadState = new MinionDeadState(this, stateMachine, "Die", this);
     }
 
     protected override void Start()
@@ -50,5 +55,12 @@ public class Enemy_Minion : Enemy
         }
 
         return false;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deadState);
     }
 }

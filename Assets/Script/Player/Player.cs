@@ -2,167 +2,121 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
-    private float InputX;
-    
-    private Rigidbody2D rb;
-    private Animator anim;
-    [SerializeField] private float jumpForce;
-    [SerializeField] public float speed;
+    [Header("Attack details")]
+    public Vector2[] attackMovement;
 
-    [Header("Collision info")]
-    [SerializeField] private float groundCheckDistance;
-    [SerializeField] private LayerMask whatIsGround;
-    private bool isGrounded;
-    private int jumpCount;
+    public bool isBusy { get; private set; } 
+    [Header("Move info")]
+    public float moveSpeed = 12f;
+    public float jumpForce;
+
+    [Header("Double Jump info")]    // 二段跳相关设置
+    public bool canDoubleJump = false;    // 是否可以进行二段跳
+    public bool hasDoubleJumped = false;    // 是否已经进行了二段跳
+
+    public int facingDir { get; private set; } = 1;
+    private bool facingRight = true;
 
     [Header("Dash info")]
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashDuration;  //一次冲刺持续时间
-    private float dashTime;
-    [SerializeField] private float dashCooldown;  //冲刺冷却时间
-    private float dashCooldownTime;
+    [SerializeField] private float dashCooldown;
+    private float dashUsageTimer;
+    public float dashSpeed;
+    public float dashDuration;
+    public float dashDir { get; private set; }
 
-    [Header("Attack info")]
-    [SerializeField] private bool isAttacking;
-    [SerializeField] private int comboCount;
-    [SerializeField]private float max_combo_delay;              //最大的连击间隔
-    private float comboTime;
 
-    private int facingDir = 1;
-    private bool facingRight = true;
-    // Start is called before the first frame update
-    void Start()
+    #region States
+    public PlayerStateMachine stateMachine { get; private set; }
+    public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveState moveState { get; private set; }
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerAirState airState { get; private set; }
+    public PlayerWallSlideState wallSlide { get; private set; }
+    public PlayerWallJumpState wallJump { get; private set; }
+    public PlayerDashState dashState { get; private set; }
+    public PlayerPrimaryAttack primaryAttack { get; private set; }
+
+    #endregion
+    protected override void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
+
+        stateMachine = new PlayerStateMachine();
+
+        idleState = new PlayerIdleState(this, stateMachine, "Idol");
+        moveState = new PlayerMoveState(this, stateMachine, "Move");
+        jumpState = new PlayerJumpState(this, stateMachine, "Jump");
+        airState = new PlayerAirState(this, stateMachine, "Jump");
+        dashState = new PlayerDashState(this, stateMachine, "Dash");
+        wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
+        wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
+
+        primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Start()
     {
-        GroundCheck();
-        CheckInput();
-        Movement();
+        base.Start();
 
-        dashTime-= Time.deltaTime;
-        dashCooldownTime -= Time.deltaTime;
-        comboTime-= Time.deltaTime;
-
-        FlipController();
-        AnimatorControllers();
+        stateMachine.Initialize(idleState);
     }
 
-    private void GroundCheck()
+    protected override void Update()
     {
-        //用射线检测地面，可防止将墙壁误认为是地面
-        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsGround);
-        //实现2段跳，这里设置为1是因为跳起来后，射线任有一段极短的时间接触地面重置计数
-        if (isGrounded)
+        base.Update();
+
+        stateMachine.currentstate.Update();
+
+        CheckForDashInput();
+    }
+
+    public IEnumerator BusyFor(float _seconds)
+    {
+        isBusy = true;
+
+        yield return new WaitForSeconds(_seconds);
+
+        isBusy = false;
+    }
+
+    public void AnimationTrigger() => stateMachine.currentstate.AnimationFinishTrigger();
+
+    private void CheckForDashInput()
+    {
+        if (IsWallDetected())
+            return;
+
+        dashUsageTimer -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
         {
-            jumpCount = 1;
+            dashUsageTimer = dashCooldown;
+            dashDir = Input.GetAxisRaw("Horizontal");
+
+            if (dashDir == 0)
+                dashDir = facingDir;
+
+            stateMachine.ChangeState(dashState);
         }
     }
 
-    private void CheckInput()
+    // 重置二段跳
+    public void ResetDoubleJump()
     {
-        InputX = Input.GetAxisRaw("Horizontal");
-
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            Attack();
-        }
-        if (Input.GetButtonDown("Jump") && jumpCount>0)
-        {
-            Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Dash();
-        }
+        canDoubleJump = true;
+        hasDoubleJumped = false;
     }
 
-    private void Dash()
+    // 执行二段跳
+    public void PerformDoubleJump()
     {
-        if (dashCooldownTime < 0 && !isAttacking)
+        if (canDoubleJump && !hasDoubleJumped)
         {
-            dashTime = dashDuration;
-            dashCooldownTime = dashCooldown;
+            hasDoubleJumped = true;
+            canDoubleJump = false; // 二段跳只能使用一次
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-    }
-
-    private void Attack()
-    {
-        isAttacking = true;
-        if (comboTime >= 0)
-        {
-            comboCount = (comboCount + 1) % 3;
-        }
-        else
-        {
-            comboCount = 0;
-        }
-        comboTime = max_combo_delay;
-    }
-
-    private void Movement()
-    {
-        if (isAttacking)
-        {
-            rb.velocity = new Vector2(0, 0);
-        }
-        else if (dashTime > 0)
-        {
-            rb.velocity = new Vector2(facingDir * dashSpeed, 0);
-        }
-        else
-        {
-            rb.velocity = new Vector2(InputX * speed, rb.velocity.y);
-        }
-    }
-
-    private void Jump()
-    {
-        jumpCount -= 1;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-    }
-
-    private void AnimatorControllers()
-    {
-        anim.SetFloat("yVelocity", rb.velocity.y);
-        anim.SetBool("isMoving", rb.velocity.x != 0);
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetBool("isDashing", dashTime > 0);
-        anim.SetBool("isAttacking", isAttacking);
-        anim.SetInteger("comboCount", comboCount);
-    }
-    
-    private void Flip()
-    {
-        facingDir = -1 * facingDir;
-        facingRight = !facingRight;
-        transform.Rotate(0,180,0);
-    }
-
-    private void FlipController()
-    {
-        if (facingRight && rb.velocity.x < 0 )
-        {
-            Flip();
-        }
-        if(!facingRight && rb.velocity.x > 0 )
-        {
-            Flip();
-        }
-    }
-    private void OnDrawGizmos()
-    {
-        //绘制两点时间的线段
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x,transform.position.y-groundCheckDistance));
-    }
-    public void AttackOver()
-    {
-        isAttacking = false;
     }
 }

@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 7325358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46, y: 0.36, z: 0}
+  m_LocalPosition: {x: -0.01, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,12 +197,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -320532712, guid: 1842f3155eece47498c9045dfee08246, type: 3}
+  m_Sprite: {fileID: -1908642444, guid: 72f514bc387c46444855be50875b31b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.3125, y: 2.75}
+  m_Size: {x: 1.1566666, y: 3.6934013}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -218,7 +218,7 @@ Animator:
   m_GameObject: {fileID: 7325358}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6acbd9cc4eface145970ef76abaa41bd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 85b37fdd829f3f74c8ef6213279a7ef4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -399,7 +399,7 @@ Transform:
   m_GameObject: {fileID: 434504454}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -0.59, z: 0}
+  m_LocalPosition: {x: -5.5, y: -0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -418,18 +418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f9e695d9b74f44daac1739d286001e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 10
-  speed: 8
-  groundCheckDistance: 1.1
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  dashSpeed: 25
-  dashDuration: 0.5
-  dashCooldown: 2
-  isAttacking: 0
-  comboCount: 0
-  max_combo_delay: 2
 --- !u!50 &434504458
 Rigidbody2D:
   serializedVersion: 4
@@ -489,8 +477,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0.5}
+  m_Size: {x: 1, y: 2.8}
   m_Direction: 0
 --- !u!1 &519420028
 GameObject:

@@ -5,8 +5,6 @@ using UnityEngine.Accessibility;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] protected LayerMask whatIsPlayer;
-
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
@@ -52,6 +50,16 @@ public class Entity : MonoBehaviour
     protected virtual void Update()
     {
 
+    }
+
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
     }
 
     public virtual void DamageEffect()

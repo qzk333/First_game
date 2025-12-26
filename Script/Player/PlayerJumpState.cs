@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpState : PlayerState
+/// <summary>
+/// 跳跃状态 - 玩家跳跃上升阶段
+/// 继承自 PlayerAirState，复用空中移动、双段跳、墙壁检测等逻辑
+/// </summary>
+public class PlayerJumpState : PlayerAirState
 {
     public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -24,10 +28,11 @@ public class PlayerJumpState : PlayerState
 
     public override void Update()
     {
-        base.Update();
+        base.Update(); 
 
+        // 当Y轴速度为负（开始下落）时，切换到下落状态
         if (rb.velocity.y < 0)
-            stateMachine.ChangeState(player.airState);
+            stateMachine.ChangeState(player.fallState);
      
     }
 }

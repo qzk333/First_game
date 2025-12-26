@@ -16,9 +16,9 @@ public class Player : Entity
     public float defaultMoveSpeed;
     public float defaultJumpForce;
 
-    [Header("Double Jump info")]    // ¶ş¶ÎÌøÏà¹ØÉèÖÃ
-    public bool canDoubleJump = false;    // ÊÇ·ñ¿ÉÒÔ½øĞĞ¶ş¶ÎÌø
-    public bool hasDoubleJumped = false;    // ÊÇ·ñÒÑ¾­½øĞĞÁË¶ş¶ÎÌø
+    [Header("Double Jump info")]    // äºŒæ®µè·³ç›¸å…³è®¾ç½®
+    public bool canDoubleJump = false;    // æ˜¯å¦å¯ä»¥è¿›è¡ŒäºŒæ®µè·³
+    public bool hasDoubleJumped = false;    // æ˜¯å¦å·²ç»è¿›è¡Œäº†äºŒæ®µè·³
 
     [Header("Dash info")]
     [SerializeField] private float dashCooldown;
@@ -34,7 +34,7 @@ public class Player : Entity
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
-    public PlayerAirState airState { get; private set; }
+    public PlayerFallState fallState { get; private set; }
     public PlayerWallSlideState wallSlide { get; private set; }
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
@@ -57,7 +57,7 @@ public class Player : Entity
         idleState = new PlayerIdleState(this, stateMachine, "Idol");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
-        airState = new PlayerAirState(this, stateMachine, "Jump");
+        fallState = new PlayerFallState(this, stateMachine, "Jump");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
@@ -142,21 +142,21 @@ public class Player : Entity
     }
 
     #region doubleJump
-    // ÖØÖÃ¶ş¶ÎÌø
+    // é‡ç½®äºŒæ®µè·³
     public void ResetDoubleJump()
     {
         canDoubleJump = true;
         hasDoubleJumped = false;
     }
 
-    // Ö´ĞĞ¶ş¶ÎÌø
+    // æ‰§è¡ŒäºŒæ®µè·³
     public void PerformDoubleJump()
     {
         if (canDoubleJump && !hasDoubleJumped)
         {
             hasDoubleJumped = true;
-            canDoubleJump = false; // ¶ş¶ÎÌøÖ»ÄÜÊ¹ÓÃÒ»´Î
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            canDoubleJump = false; // äºŒæ®µè·³åªèƒ½ä½¿ç”¨ä¸€æ¬¡
+            stateMachine.ChangeState(jumpState);
         }
     }
     #endregion

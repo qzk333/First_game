@@ -25,15 +25,11 @@ public class PlayerAirState : PlayerState
         if (Input.GetKeyDown(KeyCode.Space) && !player.IsGroundDetected())
         {
             player.PerformDoubleJump();
-            return; // Ö´ÐÐ¶þ¶ÎÌøºóÖ±½Ó·µ»Ø£¬±ÜÃâ×´Ì¬ÇÐ»»³åÍ»
         }
 
 
         if (player.IsWallDetected())
             stateMachine.ChangeState(player.wallSlide);
-
-        if (player.IsGroundDetected())
-            stateMachine.ChangeState(player.idleState);
 
         if (xInput != 0)
             player.SetVelocity(player.moveSpeed * .8f *xInput, rb.velocity.y);

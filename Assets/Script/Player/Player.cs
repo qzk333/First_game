@@ -16,8 +16,6 @@ public class Player : Entity
     public bool canDoubleJump = false;    // 是否可以进行二段跳
     public bool hasDoubleJumped = false;    // 是否已经进行了二段跳
 
-    public int facingDir { get; private set; } = 1;
-    private bool facingRight = true;
 
     [Header("Dash info")]
     [SerializeField] private float dashCooldown;
@@ -32,7 +30,7 @@ public class Player : Entity
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
-    public PlayerAirState airState { get; private set; }
+    public PlayerAirState fallState { get; private set; }
     public PlayerWallSlideState wallSlide { get; private set; }
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
@@ -48,11 +46,10 @@ public class Player : Entity
         idleState = new PlayerIdleState(this, stateMachine, "Idol");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
-        airState = new PlayerAirState(this, stateMachine, "Jump");
+        fallState = new PlayerFallState(this, stateMachine, "Jump");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
-
         primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
 
@@ -90,7 +87,7 @@ public class Player : Entity
 
         dashUsageTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.L) && dashUsageTimer < 0)
         {
             dashUsageTimer = dashCooldown;
             dashDir = Input.GetAxisRaw("Horizontal");
@@ -116,7 +113,7 @@ public class Player : Entity
         {
             hasDoubleJumped = true;
             canDoubleJump = false; // 二段跳只能使用一次
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            stateMachine.ChangeState(jumpState);
         }
     }
 }

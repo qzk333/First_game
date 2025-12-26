@@ -13,18 +13,19 @@ public class Player : Entity
     public float moveSpeed = 12f;
     public float jumpForce;
 
+    public float defaultMoveSpeed;
+    public float defaultJumpForce;
+
     [Header("Double Jump info")]    // 二段跳相关设置
     public bool canDoubleJump = false;    // 是否可以进行二段跳
     public bool hasDoubleJumped = false;    // 是否已经进行了二段跳
-
-    public int facingDir { get; private set; } = 1;
-    private bool facingRight = true;
 
     [Header("Dash info")]
     [SerializeField] private float dashCooldown;
     private float dashUsageTimer;
     public float dashSpeed;
     public float dashDuration;
+    public float defaultDashSpeed;
     public float dashDir { get; private set; }
 
 
@@ -75,6 +76,10 @@ public class Player : Entity
         base.Start();
 
         stateMachine.Initialize(idleState);
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     protected override void Update()
@@ -84,6 +89,26 @@ public class Player : Entity
         stateMachine.currentstate.Update();
 
         CheckForDashInput();
+    }
+
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        // base.SlowEntityBy(_slowPercentage, _slowDuration);
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        jumpForce = jumpForce * (1 - _slowPercentage);
+        dashSpeed = dashSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed",_slowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
     }
 
     public IEnumerator BusyFor(float _seconds)

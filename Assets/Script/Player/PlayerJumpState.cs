@@ -24,8 +24,9 @@ public class PlayerJumpState : PlayerAirState
 
     public override void Update()
     {
-        base.Update();
+        base.Update(); 
 
+        // 当Y轴速度为负（开始下落）时，切换到下落状态
         if (rb.velocity.y < 0)
             stateMachine.ChangeState(player.fallState);
      

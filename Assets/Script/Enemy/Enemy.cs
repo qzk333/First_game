@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public EnemyStateMachine stateMachine { get; private set; }
-
-    bool isAttacking;
-
     [Header("Stunned info")]
     public float stunDuration;
     public Vector2 stunDirection;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterImage;
 
     [Header("Move info")]
-    //[SerializeField] private float moveSpeed;
-
     public float moveSpeed;
     public float idleTime;
     public float battleTime;
+    public float defaultMoveSpeed;
 
     [Header("Attack info")]
     public float attackDistance;
@@ -27,10 +24,11 @@ public class Enemy : Entity
 
     [Header("Player detection")]
     [SerializeField] private float playerCheckDistance;
-    [SerializeField] private LayerMask whatIsPlayer;
+    [SerializeField] protected LayerMask whatIsPlayer;
 
-    private RaycastHit2D isPlayerDetected;
 
+    public EnemyStateMachine stateMachine { get; private set; }
+    public string lastAnimBoolName { get; private set; }
 
     protected override void Awake()
     {
@@ -48,35 +46,50 @@ public class Enemy : Entity
         base.Update();
 
         stateMachine.currentState.Update();
+    }
 
-        if (IsPlayerDetected())
+    public virtual void AssignLastAnimName(string _animBoolName) => lastAnimBoolName = _animBoolName;
+
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+    }
+
+    public virtual void OpenCounterAttackWindow()
+    {
+        canBeStunned = true;
+        counterImage.SetActive(true);
+    }
+
+    public virtual void CloseCounterAttackWindow()
+    {
+        canBeStunned = false;
+        counterImage.SetActive(false);
+    }
+
+    public virtual bool CanBeStunned()
+    {
+        if (canBeStunned)
         {
-            if (playerCheckDistance > 1)
-            {
-                rb.velocity = new Vector2(moveSpeed * 1.5f * facingDir, rb.velocity.y);
-
-                isAttacking = false;
-            }
-            else
-            {
-                isAttacking = true;
-            }
-
+            CloseCounterAttackWindow();
+            return true;
         }
 
-        if (!IsGroundDetected() || IsWallDetected())
-            Flip();
-        Movement();
+        return false;
     }
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, 50, whatIsPlayer);
-
-    private void Movement()
-    {
-        if(!isAttacking)
-            rb.velocity = new Vector2(moveSpeed * facingDir, rb.velocity.y);
-    }
 
     protected override void OnDrawGizmos()
     {

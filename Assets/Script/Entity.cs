@@ -5,12 +5,12 @@ using UnityEngine.Accessibility;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] protected LayerMask whatIsPlayer;
-
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx{ get; private set; }
+    public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }
 
     #endregion
 
@@ -42,7 +42,8 @@ public class Entity : MonoBehaviour
         fx = GetComponentInChildren<EntityFX>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
+        stats = GetComponent<CharacterStats>();
+        cd = GetComponent<CapsuleCollider2D>();
     }
 
 
@@ -51,7 +52,17 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+
+    public virtual void DamageEffect()
     {
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
@@ -111,4 +122,26 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
+
+
+    /*
+    public void MakeTransparent(bool _transparent)
+    {
+        if (_transparent)
+            sr.color = Color.clear;
+        else
+            sr.color = Color.white;
+    }
+     */
+
+    public virtual void Die()
+    {
+
+    }
+
+
+
+
+
+
 }

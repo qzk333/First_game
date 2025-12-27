@@ -22,16 +22,18 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
+        // 双段跳逻辑 - 在空中按空格可以进行二段跳
         if (Input.GetKeyDown(KeyCode.Space) && !player.IsGroundDetected())
         {
             player.PerformDoubleJump();
         }
 
-
+        // 墙壁检测 - 碰到墙壁切换到墙滑状态
         if (player.IsWallDetected())
             stateMachine.ChangeState(player.wallSlide);
 
+        // 空中移动 - 在空中可以左右移动，速度为地面的80%
         if (xInput != 0)
-            player.SetVelocity(player.moveSpeed * .8f *xInput, rb.velocity.y);
+            player.SetVelocity(player.moveSpeed * .8f * xInput, rb.velocity.y);
     }
 }

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ä¸‹è½çŠ¶æ€ - ç©å®¶åœ¨ç©ºä¸­ä¸‹è½æ—¶è¿›å…¥æ­¤çŠ¶æ€
+/// ç»§æ‰¿è‡ª PlayerAirStateï¼Œå¤ç”¨ç©ºä¸­ç§»åŠ¨ã€åŒæ®µè·³ã€å¢™å£æ£€æµ‹ç­‰é€»è¾‘
+/// </summary>
 public class PlayerFallState : PlayerAirState
 {
     public PlayerFallState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
@@ -20,25 +24,12 @@ public class PlayerFallState : PlayerAirState
 
     public override void Update()
     {
-        base.Update();
+        base.Update(); 
 
-        if (Input.GetKeyDown(KeyCode.Space) && !player.IsGroundDetected())
-        {
-            player.PerformDoubleJump();
-            return; // Ö´ĞĞ¶ş¶ÎÌøºóÖ±½Ó·µ»Ø£¬±ÜÃâ×´Ì¬ÇĞ»»³åÍ»
-        }
-
-
-        if (player.IsWallDetected())
-            stateMachine.ChangeState(player.wallSlide);
-        //×öÁËµãĞŞ¸Ä£¬Èç¹ûÂäµØËÙ¶ÈÎª0£¬Ôò¾²Ö¹£¬²»Îª0ÔòÖ±½ÓÒÆ¶¯
-        if (player.IsGroundDetected() && player.rb.velocity.x == 0)
+        // æ£€æµ‹æ˜¯å¦è½åœ°ï¼Œå¦‚æœè½åœ°åˆ™åˆ‡æ¢åˆ°idleçŠ¶æ€,å¦‚æœè½åœ°ä¸”æœ‰xè¾“å…¥åˆ™åˆ‡æ¢åˆ°moveçŠ¶æ€
+        if (player.IsGroundDetected()&&xInput==0)
             stateMachine.ChangeState(player.idleState);
-
-        if (player.IsGroundDetected() && player.rb.velocity.x != 0)
+        else if (player.IsGroundDetected()&&xInput!=0)
             stateMachine.ChangeState(player.moveState);
-
-        if (xInput != 0)
-            player.SetVelocity(player.moveSpeed * .8f * xInput, rb.velocity.y);
     }
 }

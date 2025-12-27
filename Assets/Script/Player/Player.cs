@@ -6,22 +6,26 @@ public class Player : Entity
 {
     [Header("Attack details")]
     public Vector2[] attackMovement;
+    public float counterAttackDuration = .2f;
 
     public bool isBusy { get; private set; } 
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
 
-    [Header("Double Jump info")]    // ¶ş¶ÎÌøÏà¹ØÉèÖÃ
-    public bool canDoubleJump = false;    // ÊÇ·ñ¿ÉÒÔ½øĞĞ¶ş¶ÎÌø
-    public bool hasDoubleJumped = false;    // ÊÇ·ñÒÑ¾­½øĞĞÁË¶ş¶ÎÌø
+    public float defaultMoveSpeed;
+    public float defaultJumpForce;
 
+    [Header("Double Jump info")]    // äºŒæ®µè·³ç›¸å…³è®¾ç½®
+    public bool canDoubleJump = false;    // æ˜¯å¦å¯ä»¥è¿›è¡ŒäºŒæ®µè·³
+    public bool hasDoubleJumped = false;    // æ˜¯å¦å·²ç»è¿›è¡Œäº†äºŒæ®µè·³
 
     [Header("Dash info")]
     [SerializeField] private float dashCooldown;
     private float dashUsageTimer;
     public float dashSpeed;
     public float dashDuration;
+    public float defaultDashSpeed;
     public float dashDir { get; private set; }
 
 
@@ -30,11 +34,18 @@ public class Player : Entity
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
-    public PlayerAirState fallState { get; private set; }
+    public PlayerFallState fallState { get; private set; }
     public PlayerWallSlideState wallSlide { get; private set; }
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
+    public PlayerCounterAttack counterAttack { get; private set; }
+
+
+
+
+    public PlayerDeadState deadState { get; private set; }
+
 
     #endregion
     protected override void Awake()
@@ -43,14 +54,21 @@ public class Player : Entity
 
         stateMachine = new PlayerStateMachine();
 
-        idleState = new PlayerIdleState(this, stateMachine, "Idol");
+        idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         fallState = new PlayerFallState(this, stateMachine, "Jump");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
+
         primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
+        counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
+
+
+
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
+
     }
 
     protected override void Start()
@@ -58,6 +76,10 @@ public class Player : Entity
         base.Start();
 
         stateMachine.Initialize(idleState);
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     protected override void Update()
@@ -67,6 +89,26 @@ public class Player : Entity
         stateMachine.currentstate.Update();
 
         CheckForDashInput();
+    }
+
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        // base.SlowEntityBy(_slowPercentage, _slowDuration);
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        jumpForce = jumpForce * (1 - _slowPercentage);
+        dashSpeed = dashSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed",_slowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
     }
 
     public IEnumerator BusyFor(float _seconds)
@@ -87,7 +129,7 @@ public class Player : Entity
 
         dashUsageTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.L) && dashUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
         {
             dashUsageTimer = dashCooldown;
             dashDir = Input.GetAxisRaw("Horizontal");
@@ -99,21 +141,31 @@ public class Player : Entity
         }
     }
 
-    // ÖØÖÃ¶ş¶ÎÌø
+    #region doubleJump
+    // é‡ç½®äºŒæ®µè·³
     public void ResetDoubleJump()
     {
         canDoubleJump = true;
         hasDoubleJumped = false;
     }
 
-    // Ö´ĞĞ¶ş¶ÎÌø
+    // æ‰§è¡ŒäºŒæ®µè·³
     public void PerformDoubleJump()
     {
         if (canDoubleJump && !hasDoubleJumped)
         {
             hasDoubleJumped = true;
-            canDoubleJump = false; // ¶ş¶ÎÌøÖ»ÄÜÊ¹ÓÃÒ»´Î
-            stateMachine.ChangeState(jumpState);
+            canDoubleJump = false; // äºŒæ®µè·³åªèƒ½ä½¿ç”¨ä¸€æ¬¡
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // ç›´æ¥è®¾ç½®é€Ÿåº¦ï¼Œä¸åˆ‡æ¢çŠ¶æ€
         }
     }
+    #endregion
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deadState);
+    }
+
 }

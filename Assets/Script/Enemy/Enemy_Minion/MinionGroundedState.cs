@@ -15,7 +15,8 @@ public class MinionGroundedState : EnemyState
     {
         base.Enter();
 
-        player = PlayerManager.instance.player.transform;
+        if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+            player = PlayerManager.instance.player.transform;
     }
 
     public override void Exit()
@@ -26,6 +27,9 @@ public class MinionGroundedState : EnemyState
     public override void Update()
     {
         base.Update();
+
+        if (player == null)
+            return;
 
         if (enemy.IsPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position ) < 2)
             stateMachine.ChangeState(enemy.battleState);

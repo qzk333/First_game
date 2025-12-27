@@ -16,11 +16,15 @@ public class MinionBattleState : EnemyState
     {
         base.Enter();
 
-        player = PlayerManager.instance.player.transform;
+        if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+            player = PlayerManager.instance.player.transform;
     }
     public override void Update()
     {
         base.Update();
+
+        if (player == null)
+            return;
 
         if (enemy.IsPlayerDetected())
         {
@@ -38,10 +42,15 @@ public class MinionBattleState : EnemyState
                 stateMachine.ChangeState(enemy.idleState);
         }
 
+        // 根据玩家位置决定移动方向和转身
         if (player.position.x > enemy.transform.position.x)
             moveDir = 1;
         else if(player.position.x < enemy.transform.position.x)
             moveDir = -1;
+
+        // 确保敌人面向玩家
+        if (moveDir != enemy.facingDir)
+            enemy.Flip();
 
         enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
     }
@@ -55,7 +64,6 @@ public class MinionBattleState : EnemyState
     {
         if(Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
         {
-            enemy.lastTimeAttacked = Time.time;
             return true;
         }
         return false;

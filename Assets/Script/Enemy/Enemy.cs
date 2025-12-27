@@ -20,6 +20,7 @@ public class Enemy : Entity
     public float attackDistance;
     public float attackCooldown;
     [HideInInspector] public float lastTimeAttacked;
+    public float attackDuration;
 
 
     [Header("Player detection")]

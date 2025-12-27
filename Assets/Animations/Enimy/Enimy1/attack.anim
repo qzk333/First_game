@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: playerAttack3
+  m_Name: attack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -147368437, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
+      value: {fileID: -1236416257, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
     - time: 0.125
-      value: {fileID: 1268537067, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
+      value: {fileID: -1322908321, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
     - time: 0.25
-      value: {fileID: 1952277014, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
+      value: {fileID: -1625501169, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
     - time: 0.375
-      value: {fileID: -498272558, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
+      value: {fileID: 1256460556, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -147368437, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
-    - {fileID: 1268537067, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
-    - {fileID: 1952277014, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
-    - {fileID: -498272558, guid: 342a29c74f289144da1e46ccc3dd8c7e, type: 3}
+    - {fileID: -1236416257, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
+    - {fileID: -1322908321, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
+    - {fileID: -1625501169, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
+    - {fileID: 1256460556, guid: 7ba91d5ffc17fea45afea4d7fa83edfb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -79,13 +79,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.125
-    functionName: AttackTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.375
     functionName: AnimationTrigger
     data: 

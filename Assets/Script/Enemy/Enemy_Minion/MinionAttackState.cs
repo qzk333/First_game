@@ -19,7 +19,7 @@ public class MinionAttackState : EnemyState
     public override void Exit()
     {
         base.Exit();
-
+        stateTimer=enemy.attackDuration;
         enemy.lastTimeAttacked = Time.time;
     }
 
@@ -27,9 +27,9 @@ public class MinionAttackState : EnemyState
     {
         base.Update();
 
-        enemy.SetZeroVelocity();
+        enemy.SetVelocity(0, 0);
 
-        if (triggerCalled)
+        if (stateTimer < 0)
             stateMachine.ChangeState(enemy.battleState);
     }
 }

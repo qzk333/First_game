@@ -25,7 +25,7 @@ public class PlayerCounterAttack : PlayerState
     {
         base.Update();
 
-        player.SetZeroVelocity();
+        player.SetVelocity(0, 0);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
@@ -35,7 +35,7 @@ public class PlayerCounterAttack : PlayerState
             {
                 if (hit.GetComponent<Enemy>().CanBeStunned())
                 {
-                    stateTimer = 10; // ¹»´ó¾ÍÐÐ £¨´óÓÚ1£©
+                    stateTimer = 10; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½
                     player.anim.SetBool("SuccessfulCounterAttack", true);
                 }
             }

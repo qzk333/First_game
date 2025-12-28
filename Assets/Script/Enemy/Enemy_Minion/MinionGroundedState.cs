@@ -31,7 +31,27 @@ public class MinionGroundedState : EnemyState
         if (player == null)
             return;
 
-        if (enemy.IsPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position ) < 2)
+        // 检测玩家距离
+        float distanceToPlayer = Vector2.Distance(enemy.transform.position, player.position);
+        
+        // 如果距离在攻击范围内且可以攻击，进入攻击状态
+        if (distanceToPlayer < enemy.attackDistance && CanAttack())
+        {
+            stateMachine.ChangeState(enemy.attackState);
+        }
+        // 如果检测到玩家或距离较近，进入战斗状态
+        else if (enemy.IsPlayerDetected() || distanceToPlayer < 2)
+        {
             stateMachine.ChangeState(enemy.battleState);
+        }
+    }
+    
+    private bool CanAttack()
+    {
+        if(Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
+        {
+            return true;
+        }
+        return false;
     }
 }

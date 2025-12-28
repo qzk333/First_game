@@ -17,7 +17,9 @@ public class EnemyStats : CharacterStats
     {
         base.TakeDamage(_damage);
 
-        enemy.DamageEffect();
+        // 只有在敌人未死亡时才播放受击特效
+        if (!isDead)
+            enemy.DamageEffect();
     }
 
     protected override void Die()

@@ -17,11 +17,15 @@ public class MinionDeadState : EnemyState
     {
         base.Enter();
 
-        enemy.anim.SetBool(enemy.lastAnimBoolName, true);
-        enemy.anim.speed = 0;
-        enemy.cd.enabled = false;
+        // 移除了以下错误代码，让死亡动画正常播放：
+        // enemy.anim.SetBool(enemy.lastAnimBoolName, true);  // 这会设置错误的动画
+        // enemy.anim.speed = 0;  // 这会让所有动画停止播放
+        //enemy.cd.enabled = false;  // 注释掉，保留死亡后的碰撞体
 
-        stateTimer = .1f;  // ������ʬ����䣬ֵԽС������Խ��
+        stateTimer = .1f;  // ������ʬ����䣬ֵԽС������Խ��
+        
+        //rb.bodyType = RigidbodyType2D.Kinematic;  // 禁用物理模拟，让敌人停留在原地
+        enemy.SetVelocity(0,rb.velocity.y); // 停止所有移动
 
     }
 
@@ -29,7 +33,8 @@ public class MinionDeadState : EnemyState
     {
         base.Update();
 
-        if (stateTimer > 0)
-            rb.velocity = new Vector2(0, 10);
+        // 注释掉向上飞的效果，让敌人自然掉落
+        // if (stateTimer > 0)
+        //     rb.velocity = new Vector2(0, 3);
     }
 }

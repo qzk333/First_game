@@ -43,15 +43,27 @@ public class MinionBattleState : EnemyState
         }
 
         // 根据玩家位置决定移动方向和转身
-        if (player.position.x > enemy.transform.position.x)
+        float xDistanceToPlayer = player.position.x - enemy.transform.position.x;
+        float absDistance = Mathf.Abs(xDistanceToPlayer);
+        
+        // 如果距离太近，切换到idle状态
+        if (absDistance < 0.5f)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+            return;
+        }
+        
+        // 根据玩家位置决定朝向
+        if (xDistanceToPlayer > 0.1f)  // 玩家在右边
             moveDir = 1;
-        else if(player.position.x < enemy.transform.position.x)
+        else if(xDistanceToPlayer < -0.1f)  // 玩家在左边
             moveDir = -1;
 
         // 确保敌人面向玩家
         if (moveDir != enemy.facingDir)
             enemy.Flip();
 
+        // 正常移动追踪玩家
         enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
     }
 

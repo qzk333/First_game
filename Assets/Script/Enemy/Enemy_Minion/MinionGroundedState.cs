@@ -15,7 +15,8 @@ public class MinionGroundedState : EnemyState
     {
         base.Enter();
 
-        player = PlayerManager.instance.player.transform;
+        if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+            player = PlayerManager.instance.player.transform;
     }
 
     public override void Exit()
@@ -27,7 +28,25 @@ public class MinionGroundedState : EnemyState
     {
         base.Update();
 
-        if (enemy.IsPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position ) < 2)
+        if (player == null)
+            return;
+
+        // 检测玩家距离
+        float distanceToPlayer = Vector2.Distance(enemy.transform.position, player.position);
+        
+        // grounded 状态用于 move 状态，检测到玩家就切换到 battle
+        if (enemy.IsPlayerDetected() || distanceToPlayer < 2)
+        {
             stateMachine.ChangeState(enemy.battleState);
+        }
+    }
+    
+    private bool CanAttack()
+    {
+        if(Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
+        {
+            return true;
+        }
+        return false;
     }
 }

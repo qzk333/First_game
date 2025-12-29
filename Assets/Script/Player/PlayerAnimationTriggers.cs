@@ -25,4 +25,19 @@ public class PlayerAnimationTriggers : MonoBehaviour
         }
 
     }
+    
+    // 反击攻击触发器，在成功反击动画中调用
+    public void CounterAttackTrigger()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
+
+        foreach(var hit in colliders)
+        {
+            if (hit.GetComponent<Enemy>() != null)
+            {
+                EnemyStats _target = hit.GetComponent<EnemyStats>();
+                player.stats.DoDamage(_target);
+            }
+        }
+    }
 }

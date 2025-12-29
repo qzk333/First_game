@@ -5,20 +5,20 @@ public class CharacterStats : MonoBehaviour
     private EntityFX fx;
 
     [Header("Major stats")]
-    public Stat strength;    // ÉËº¦+1£¬±©»÷ÉËº¦+1%
-    public Stat agility;     // Ãô½İ£¨ÉÁ±Ü£©
-    // public Stat intelligence;    // Ä§·¨ÉËº¦
-    public Stat vitality;    // »ØÑª
+    public Stat strength;    // ä¼¤å®³+1ï¼Œæš´å‡»ä¼¤å®³+1%
+    public Stat agility;     // æ•æ·ï¼ˆé—ªé¿ï¼‰
+    // public Stat intelligence;    // é­”æ³•ä¼¤å®³
+    public Stat vitality;    // å›è¡€
 
     [Header("Offensive stats")]
     public Stat damage;
-    public Stat critChance;    // ±©»÷ÂÊ
-    public Stat critPower;    // ±©»÷ÉËº¦ÎªÆÕÍ¨ÉËº¦µÄ1.5±¶
+    public Stat critChance;    // æš´å‡»ç‡
+    public Stat critPower;    // æš´å‡»ä¼¤å®³ä¸ºæ™®é€šä¼¤å®³çš„1.5å€
 
     [Header("Defensive stats")]
-    public Stat maxHealth;    // ÑªÁ¿
-    public Stat armor;    // ¿ø¼×·ÀÓù
-    public Stat evasion;    // ÉÁ±Ü
+    public Stat maxHealth;    // è¡€é‡
+    public Stat armor;    // ç›”ç”²é˜²å¾¡
+    public Stat evasion;    // é—ªé¿
     public Stat magicResistance;
 
     [Header("Magic stats")]
@@ -41,6 +41,8 @@ public class CharacterStats : MonoBehaviour
 
 
     [SerializeField] public int currentHealth;
+    
+    public bool isDead { get; private set; }
     protected virtual void Start()
     {
         critPower.SetDefaultValue(150);
@@ -48,7 +50,7 @@ public class CharacterStats : MonoBehaviour
 
         fx = GetComponent<EntityFX>();
 
-        // ÀıÈç£º×°±¸ÇàÁúµ¶¹¥»÷ + 4
+        // ä¾‹å¦‚ï¼šè£…å¤‡é’é¾™åˆ€æ”»å‡» + 4
         //damage.AddModifier(4);
     }
 
@@ -73,7 +75,7 @@ public class CharacterStats : MonoBehaviour
         if (igniteDamageTimer < 0)
         {
             currentHealth -= igniteDamage;
-            if (currentHealth < 0)
+            if (currentHealth <= 0)
                 Die();
 
             igniteDamageTimer = igniteDamageCoolDown;
@@ -142,7 +144,7 @@ public class CharacterStats : MonoBehaviour
         }
 
         if (canApplyIgnite)
-            _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f)); // ³ÖĞøÈ¼ÉÕÉËº¦Îª»ğÑæÉËº¦µÄ20%
+            _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f)); // æŒç»­ç‡ƒçƒ§ä¼¤å®³ä¸ºç«ç„°ä¼¤å®³çš„20%
 
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
 
@@ -162,8 +164,8 @@ public class CharacterStats : MonoBehaviour
 
         if (_ignite) 
         {
-            isIgnited = _ignite;    // ³ÖĞøµãÈ¼ÉËº¦
-            ignitedTimer = ailmentsDuration;      // ÉèÖÃµãÈ¼³ÖĞøÊ±¼äÎª4Ãë
+            isIgnited = _ignite;    // æŒç»­ç‚¹ç‡ƒä¼¤å®³
+            ignitedTimer = ailmentsDuration;      // è®¾ç½®ç‚¹ç‡ƒæŒç»­æ—¶é—´ä¸º4ç§’
             fx.IgniteFxFor(ailmentsDuration);
         }
 
@@ -189,14 +191,19 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage)
     {
+        // å¦‚æœå·²ç»æ­»äº¡ï¼Œä¸å†å—åˆ°ä¼¤å®³
+        if (isDead)
+            return;
+            
         currentHealth -= _damage;
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
             Die();
     }
 
     protected virtual void Die()
     {
+        isDead = true;
         // throw new NotImplementedException();
     }
 
@@ -227,7 +234,7 @@ public class CharacterStats : MonoBehaviour
     {
         int totalCriticalChance = critChance.GetValue() + agility.GetValue();
 
-        if (Random.Range(0, 100) <= totalCriticalChance)    // Ëæ»úÊıÊµÏÖ¶ãÉÁ
+        if (Random.Range(0, 100) <= totalCriticalChance)    // éšæœºæ•°å®ç°èº²é—ª
             return true;
         
         return false;

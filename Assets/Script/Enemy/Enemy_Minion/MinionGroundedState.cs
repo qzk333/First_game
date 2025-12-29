@@ -34,13 +34,8 @@ public class MinionGroundedState : EnemyState
         // 检测玩家距离
         float distanceToPlayer = Vector2.Distance(enemy.transform.position, player.position);
         
-        // 如果距离在攻击范围内且可以攻击，进入攻击状态
-        if (distanceToPlayer < enemy.attackDistance && CanAttack())
-        {
-            stateMachine.ChangeState(enemy.attackState);
-        }
-        // 如果检测到玩家或距离较近，进入战斗状态
-        else if (enemy.IsPlayerDetected() || distanceToPlayer < 2)
+        // grounded 状态用于 move 状态，检测到玩家就切换到 battle
+        if (enemy.IsPlayerDetected() || distanceToPlayer < 2)
         {
             stateMachine.ChangeState(enemy.battleState);
         }

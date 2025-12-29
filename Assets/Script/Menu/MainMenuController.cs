@@ -1,37 +1,52 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio; //ÓÃÓÚ¿ØÖÆÒôÁ¿
-using UnityEngine.SceneManagement; //ÓÃÓÚÌø×ª³¡¾°
+using UnityEngine.Audio; //ç”¨äºæ§åˆ¶éŸ³é‡
+using UnityEngine.SceneManagement; //ç”¨äºè·³è½¬åœºæ™¯
 
 public class MainMenuController : MonoBehaviour
 {
-    [Header("½çÃæÃæ°å")]
+    [Header("ç•Œé¢é¢æ¿")]
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
 
-    [Header("ÉèÖÃ×é¼ş")]
-    public AudioMixer audioMixer; // ĞèÒªÔÚProjectÀï´´½¨Ò»¸öAudioMixer
+    [Header("è®¾ç½®ç»„ä»¶")]
+    public AudioMixer audioMixer; // éœ€è¦åœ¨Projecté‡Œåˆ›å»ºä¸€ä¸ªAudioMixer
     public Slider volumeSlider;
 
     void Start()
     {
-        // ÓÎÏ·¿ªÊ¼Ê±£¬È·±£Ö÷²Ëµ¥ÏÔÊ¾£¬ÉèÖÃ²Ëµ¥Òş²Ø
+        // æ¸¸æˆå¼€å§‹æ—¶ï¼Œç¡®ä¿ä¸»èœå•æ˜¾ç¤ºï¼Œè®¾ç½®èœå•éšè—
         mainMenuPanel.SetActive(true);
         settingsPanel.SetActive(false);
 
-        // ³õÊ¼»¯ÒôÁ¿ÌõµÄÖµ£¨Èç¹ûÓĞ±£´æ¹ıµÄ»°£©
+        // åˆå§‹åŒ–éŸ³é‡æ¡çš„å€¼ï¼ˆå¦‚æœæœ‰ä¿å­˜è¿‡çš„è¯ï¼‰
         float savedVol;
         if (audioMixer != null && audioMixer.GetFloat("MasterVol", out savedVol))
         {
-            // ÕâÀïÉæ¼°·Ö±´×ª»»£¬¼òµ¥´¦ÀíÏÈÂÔ¹ı£¬Ö±½ÓÓÃSliderÖµ
+            // è¿™é‡Œæ¶‰åŠåˆ†è´è½¬æ¢ï¼Œç®€å•å¤„ç†å…ˆç•¥è¿‡ï¼Œç›´æ¥ç”¨Sliderå€¼
         }
     }
 
-    // --- °´Å¥µã»÷ÊÂ¼ş ---
+    // --- æŒ‰é’®ç‚¹å‡»äº‹ä»¶ ---
 
+    // å¼€å§‹æ–°æ¸¸æˆ
     public void OnStartGame()
     {
-        // ÌîÈëÄãÓÎÏ·³¡¾°µÄÃû×Ö£¬¼ÇµÃÔÚ Build Settings ÀïÌí¼Ó³¡¾°
+        // åˆ›å»ºæ–°çš„æ¸¸æˆæ•°æ®
+        if (SaveManager.instance != null)
+        {
+            SaveManager.instance.NewGame();
+        }
+        
+        // åŠ è½½æ¸¸æˆåœºæ™¯
+        SceneManager.LoadScene(1);
+    }
+    
+    // ç»§ç»­æ¸¸æˆï¼ˆè¯»å–å­˜æ¡£ï¼‰
+    public void OnContinueGame()
+    {
+        // SaveManagerä¼šè‡ªåŠ¨åœ¨åœºæ™¯åŠ è½½æ—¶è¯»å–å­˜æ¡£
+        // åªéœ€è¦åˆ‡æ¢åœºæ™¯å³å¯
         SceneManager.LoadScene(1);
     }
 
@@ -50,14 +65,14 @@ public class MainMenuController : MonoBehaviour
     public void OnQuitGame()
     {
         Application.Quit();
-        Debug.Log("ÍË³öÓÎÏ·"); // ±à¼­Æ÷Àï¿´²»µ½ÍË³ö£¬ÕâĞĞÓÃÓÚ²âÊÔ
+        Debug.Log("é€€å‡ºæ¸¸æˆ"); // ç¼–è¾‘å™¨é‡Œçœ‹ä¸åˆ°é€€å‡ºï¼Œè¿™è¡Œç”¨äºæµ‹è¯•
     }
 
-    // ÒôÁ¿¿ØÖÆÂß¼­
+    // éŸ³é‡æ§åˆ¶é€»è¾‘
     public void SetVolume(float volume)
     {
-        // ¼ÙÉè audioMixer ±©Â¶³öµÄ²ÎÊı½Ğ "MasterVol"
-        // Mathf.Log10 ÓÃÓÚ½«ÏßĞÔ»¬ÌõÖµ(0.0001-1)×ª»»Îª·Ö±´(-80µ½0)
+        // å‡è®¾ audioMixer æš´éœ²å‡ºçš„å‚æ•°å« "MasterVol"
+        // Mathf.Log10 ç”¨äºå°†çº¿æ€§æ»‘æ¡å€¼(0.0001-1)è½¬æ¢ä¸ºåˆ†è´(-80åˆ°0)
         if (audioMixer != null)
         {
             audioMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);

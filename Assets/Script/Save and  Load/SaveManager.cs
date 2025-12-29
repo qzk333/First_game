@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
 
     [SerializeField] private string fileName;
+    [SerializeField] private bool initializeDataIfNull = false;
 
     private GameData gameData;
     private List<ISaveManager> saveManagers;
@@ -17,9 +19,32 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         if (instance != null)
-            Destroy(instance.gameObject);
+        {
+            Destroy(gameObject);
+            return;
+        }
         else
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 每次加载新场景时，重新查找所有ISaveManager
+        this.saveManagers = FindAllSaveManagers();
+        LoadGame();
     }
 
     private void Start()

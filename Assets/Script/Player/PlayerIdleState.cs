@@ -23,7 +23,7 @@ public class PlayerIdleState : PlayerGroundedState
 
     public override void Update()
     {
-        base.Update();
+        base.Update(); // 调用父类Update，会检测攻击、跳跃等输入
 
         if (xInput == player.facingDir && player.IsWallDetected())
             return;

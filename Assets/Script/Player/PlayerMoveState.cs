@@ -21,9 +21,9 @@ public class PlayerMoveState : PlayerGroundedState
 
     public override void Update()
     {
-        base.Update();
+        base.Update(); // 调用父类Update，会检测攻击、跳跃等输入
 
-        player.SetVelocity(xInput * player.moveSpeed, rb.velocity.y);
+        player.SetVelocity(xInput * player.moveSpeed, player.rb.velocity.y);
 
         if (xInput == 0)
             stateMachine.ChangeState(player.idleState);

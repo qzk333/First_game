@@ -1,38 +1,54 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // ±ØĞëÒıÓÃÕâ¸ö
+using UnityEngine.EventSystems; // å¿…é¡»å¼•ç”¨è¿™ä¸ª
 
-public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private Vector3 originalScale;
-    public float hoverScale = 1.1f; // ·Å´ó±¶Êı
-    public float speed = 10f;       // Ëõ·ÅËÙ¶È
+    public float hoverScale = 1.1f; // æ”¾å¤§å€æ•°
+    public float speed = 10f;       // ç¼©æ”¾é€Ÿåº¦
+    
+    [Header("Sound Settings")]
+    public AudioClip hoverSound;    // æ‚¬åœéŸ³æ•ˆ
+    public AudioClip clickSound;    // ç‚¹å‡»éŸ³æ•ˆ
 
+    private Vector3 originalScale;
     private Vector3 targetScale;
 
     void Start()
     {
-        // ¼ÇÂ¼°´Å¥Ô­Ê¼´óĞ¡
+        // è®°å½•æŒ‰é’®åŸå§‹å¤§å°
         originalScale = transform.localScale;
         targetScale = originalScale;
     }
 
     void Update()
     {
-        // Æ½»¬¹ı¶Éµ½Ä¿±ê´óĞ¡
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * speed);
+        // å¹³æ»‘è¿‡æ¸¡åˆ°ç›®æ ‡å¤§å° (ä½¿ç”¨ unscaledDeltaTime ä»¥æ”¯æŒæš‚åœèœå•)
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.unscaledDeltaTime * speed);
     }
 
-    // Êó±êÒÆÈë
+    // é¼ æ ‡ç§»å…¥
     public void OnPointerEnter(PointerEventData eventData)
     {
         targetScale = originalScale * hoverScale;
-        // Èç¹ûÓĞÒôĞ§£¬¿ÉÒÔÔÚÕâÀï²¥·Å£¬ÀıÈç£º
-        // AudioSource.PlayClipAtPoint(hoverSound, transform.position);
+        
+        if (hoverSound != null)
+        {
+            AudioSource.PlayClipAtPoint(hoverSound, Camera.main.transform.position);
+        }
     }
 
-    // Êó±êÒÆ³ö
+    // é¼ æ ‡ç§»å‡º
     public void OnPointerExit(PointerEventData eventData)
     {
         targetScale = originalScale;
+    }
+    
+    // é¼ æ ‡ç‚¹å‡»
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (clickSound != null)
+        {
+            AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+        }
     }
 }

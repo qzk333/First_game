@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - Enimy
+  - Items
   - 
   - 
   - 
@@ -43,4 +43,13 @@ TagManager:
     locked: 0
   - name: TopUI
     uniqueID: 3520218543
+    locked: 0
+  - name: BigBackGround
+    uniqueID: 4004210369
+    locked: 0
+  - name: BackGround
+    uniqueID: 3112655115
+    locked: 0
+  - name: Player
+    uniqueID: 1901712979
     locked: 0

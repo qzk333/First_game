@@ -40,4 +40,39 @@ public class PlayerAnimationTriggers : MonoBehaviour
             }
         }
     }
+
+    // 远程攻击触发器
+    public void RangedAttackTrigger()
+    {
+        if (player.swordWavePrefab != null)
+        {
+            // 生成刀波
+            // 使用 attackCheck 而不是 transform.position，防止生成在脚底撞到地面瞬间消失
+            // 同时也让刀波出现在角色前方，更符合视觉
+            GameObject newSwordWave = Instantiate(player.swordWavePrefab, player.attackCheck.position, Quaternion.identity);
+            
+            // 获取控制脚本
+            SwordWaveController controller = newSwordWave.GetComponent<SwordWaveController>();
+            
+            if (controller != null)
+            {
+                // 计算实际伤害：(基础伤害 + 力量) * 倍率
+                // 我们直接从 Player 的 CharacterStats 组件读取数值
+                int baseDamage = 10;
+                
+                if (player.stats != null)
+                {
+                    baseDamage = player.stats.damage.GetValue() + player.stats.strength.GetValue();
+                }
+                
+                float finalDamage = baseDamage * player.rangedDamageMultiplier;
+                
+                controller.Setup(finalDamage, player.facingDir);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Sword Wave Prefab not assigned on Player!");
+        }
+    }
 }

@@ -7,6 +7,11 @@ public class Player : Entity
     [Header("Attack details")]
     public Vector2[] attackMovement;
     public float counterAttackDuration = .2f;
+    
+    [Header("Ranged Attack")]
+    public GameObject swordWavePrefab; // 刀波预制体
+    public float rangedDamageMultiplier = 3.0f; // 3倍伤害
+    public float defaultGravityScale; // 记录默认重力
 
     public bool isBusy { get; private set; } 
     [Header("Move info")]
@@ -39,6 +44,8 @@ public class Player : Entity
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
+    public PlayerJumpAttackState jumpAttackState { get; private set; }
+    public PlayerRangedAttackState rangedAttackState { get; private set; } // 新状态
     public PlayerCounterAttack counterAttack { get; private set; }
 
 
@@ -64,8 +71,8 @@ public class Player : Entity
 
         primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
-
-
+        jumpAttackState = new PlayerJumpAttackState(this, stateMachine, "JumpAttack");
+        rangedAttackState = new PlayerRangedAttackState(this, stateMachine, "RangedAttack");
 
         deadState = new PlayerDeadState(this, stateMachine, "Die");
 
@@ -80,6 +87,7 @@ public class Player : Entity
         defaultMoveSpeed = moveSpeed;
         defaultJumpForce = jumpForce;
         defaultDashSpeed = dashSpeed;
+        defaultGravityScale = rb.gravityScale; // 初始化重力
     }
 
     protected override void Update()

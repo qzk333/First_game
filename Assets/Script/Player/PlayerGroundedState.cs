@@ -35,6 +35,12 @@ public class PlayerGroundedState : PlayerState
 
             if (InputManager.instance.playerActions.Player.Jump.WasPressedThisFrame() && player.IsGroundDetected())
                 stateMachine.ChangeState(player.jumpState);
+
+            // 远程攻击检测 (暂时绑定为 K 键)
+            if (InputManager.instance.playerActions.Player.RangedAttack.WasPressedThisFrame())
+            {
+                stateMachine.ChangeState(player.rangedAttackState);
+            }
         }
 
         if (!player.IsGroundDetected())

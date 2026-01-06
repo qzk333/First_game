@@ -34,6 +34,20 @@ public class PlayerAirState : PlayerState
         if (player.IsWallDetected())
             stateMachine.ChangeState(player.wallSlide);
 
+        // 远程攻击检测 (暂时绑定为 K 键，你可以改成自己想要的)
+        if (InputManager.instance.playerActions.Player.RangedAttack.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.rangedAttackState);
+            return;
+        }
+
+        // 空中攻击检测
+        if (InputManager.instance != null && InputManager.instance.playerActions.Player.Attack.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.jumpAttackState);
+            return; // 切换状态后直接返回，避免执行后续的移动逻辑(可选)
+        }
+
         // 空中移动 - 在空中可以左右移动，速度为地面的80%
         if (xInput != 0)
             player.SetVelocity(player.moveSpeed * .8f * xInput, rb.velocity.y);

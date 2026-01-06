@@ -12,10 +12,8 @@ public class GameData
     public int playerMaxHealth;
     public SerializableVector3 playerPosition;
     
-    // 可以添加更多数据
-    // public int playerLevel;
-    // public List<string> unlockedSkills;
-    // 等等...
+    // 输入绑定覆盖数据
+    public string inputBindingOverrides;
 
     public GameData()
     {
@@ -23,6 +21,7 @@ public class GameData
         this.playerHealth = 100;
         this.playerMaxHealth = 100;
         this.playerPosition = new SerializableVector3(0, 0, 0);
+        this.inputBindingOverrides = string.Empty;
     }
 }
 

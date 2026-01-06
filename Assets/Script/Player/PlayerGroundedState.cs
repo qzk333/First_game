@@ -25,17 +25,19 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            stateMachine.ChangeState(player.counterAttack);
+        if (InputManager.instance != null)
+        {
+            if (InputManager.instance.playerActions.Player.CounterAttack.WasPressedThisFrame())
+                stateMachine.ChangeState(player.counterAttack);
 
-        if (Input.GetKeyDown(KeyCode.J))
-            stateMachine.ChangeState(player.primaryAttack);
+            if (InputManager.instance.playerActions.Player.Attack.WasPressedThisFrame())
+                stateMachine.ChangeState(player.primaryAttack);
+
+            if (InputManager.instance.playerActions.Player.Jump.WasPressedThisFrame() && player.IsGroundDetected())
+                stateMachine.ChangeState(player.jumpState);
+        }
 
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.fallState);
-
-        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
-            stateMachine.ChangeState(player.jumpState);
-        
     }
 }

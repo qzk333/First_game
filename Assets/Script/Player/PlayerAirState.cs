@@ -23,7 +23,9 @@ public class PlayerAirState : PlayerState
         base.Update();
 
         // 双段跳逻辑 - 在空中按空格可以进行二段跳
-        if (Input.GetKeyDown(KeyCode.Space) && !player.IsGroundDetected())
+        if (InputManager.instance != null && 
+            InputManager.instance.playerActions.Player.Jump.WasPressedThisFrame() && 
+            !player.IsGroundDetected())
         {
             player.PerformDoubleJump();
         }

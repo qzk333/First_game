@@ -33,8 +33,14 @@ public class PlayerState
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
+
+        // 使用新的 Input System 获取移动输入
+        if (InputManager.instance != null && InputManager.instance.playerActions != null)
+        {
+            Vector2 movement = InputManager.instance.playerActions.Player.Movement.ReadValue<Vector2>();
+            xInput = movement.x;
+            yInput = movement.y;
+        }
         player.anim.SetFloat("yVelocity",rb.velocity.y);
     }
 

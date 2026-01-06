@@ -70,6 +70,12 @@ public class SaveManager : MonoBehaviour
             NewGame();
         }
 
+        // 加载输入绑定覆盖
+        if (InputManager.instance != null && !string.IsNullOrEmpty(gameData.inputBindingOverrides))
+        {
+            InputManager.instance.LoadBindingOverrides(gameData.inputBindingOverrides);
+        }
+
         foreach (ISaveManager saveManager in saveManagers)
         {
             saveManager.LoadData(gameData);
@@ -78,6 +84,12 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
+        // 保存输入绑定覆盖
+        if (InputManager.instance != null)
+        {
+            gameData.inputBindingOverrides = InputManager.instance.SaveBindingOverrides();
+        }
+
         foreach (ISaveManager saveManager in saveManagers)
         {
             saveManager.SaveData(ref gameData);
@@ -95,5 +107,22 @@ public class SaveManager : MonoBehaviour
         IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
 
         return new List<ISaveManager>(saveManagers);
+    }
+
+    public void SaveInputBindingOverrides(string overridesJson)
+    {
+        // 1. 确保 gameData 已经初始化
+        if (gameData == null)
+        {
+            gameData = new GameData();
+        }
+
+        // 2. 更新内存中的数据 (这是最关键的一步！防止脏数据覆盖)
+        gameData.inputBindingOverrides = overridesJson;
+
+        // 3. 立即写入硬盘
+        dataHandler.Save(gameData);
+
+        Debug.Log("SaveManager: 已更新内存并保存按键设置到 GameData.dat");
     }
 }

@@ -25,6 +25,12 @@ public class PlayerPrimaryAttack : PlayerState
         float attackDir = player.facingDir;
         if (xInput != 0)
             attackDir = xInput;
+        
+        // 强制同步角色朝向，确保攻击方向和视觉一致
+        if (attackDir > 0 && player.facingDir < 0)
+            player.Flip();
+        else if (attackDir < 0 && player.facingDir > 0)
+            player.Flip();
         #endregion
         
         player.SetVelocity(player.attackMovement[comboCounter].x * attackDir, 

@@ -7,9 +7,6 @@ public class PauseMenuController : MonoBehaviour
     [Header("暂停菜单面板")]
     [SerializeField] private GameObject pauseMenuPanel;
     
-    [Header("按键设置")]
-    [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
-    
     private bool isPaused = false;
     
     private void Start()
@@ -21,8 +18,11 @@ public class PauseMenuController : MonoBehaviour
     
     private void Update()
     {
-        // 按ESC键切换暂停状态
-        if (Input.GetKeyDown(pauseKey))
+        // 使用新的 Input System 检测暂停键
+        if (InputManager.instance == null || InputManager.instance.playerActions == null)
+            return;
+
+        if (InputManager.instance.playerActions.Player.Pause.WasPressedThisFrame())
         {
             if (isPaused)
                 ResumeGame();

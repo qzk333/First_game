@@ -129,10 +129,14 @@ public class Player : Entity
 
         dashUsageTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
+        if (InputManager.instance != null && 
+            InputManager.instance.playerActions.Player.Dash.WasPressedThisFrame() && 
+            dashUsageTimer < 0)
         {
             dashUsageTimer = dashCooldown;
-            dashDir = Input.GetAxisRaw("Horizontal");
+            
+            Vector2 movement = InputManager.instance.playerActions.Player.Movement.ReadValue<Vector2>();
+            dashDir = movement.x;
 
             if (dashDir == 0)
                 dashDir = facingDir;

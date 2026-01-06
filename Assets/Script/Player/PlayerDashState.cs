@@ -12,6 +12,7 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
 
+        player.rb.gravityScale = 0; // 冲刺时无视重力
         stateTimer = player.dashDuration;
     }
 
@@ -19,6 +20,7 @@ public class PlayerDashState : PlayerState
     {
         base.Exit();
 
+        player.rb.gravityScale = player.defaultGravityScale; // 恢复重力
         player.SetVelocity(0, rb.velocity.y);
     }
 
@@ -29,7 +31,7 @@ public class PlayerDashState : PlayerState
         if (!player.IsGroundDetected() && player.IsWallDetected())
             stateMachine.ChangeState(player.wallSlide);
 
-        player.SetVelocity(player.dashSpeed * player.dashDir, rb.velocity.y);
+        player.SetVelocity(player.dashSpeed * player.dashDir, 0);
 
         if (stateTimer < 0)
             stateMachine.ChangeState(player.idleState);

@@ -28,7 +28,6 @@ public class MinionDeadState : EnemyState
         enemy.SetVelocity(0,rb.velocity.y); // 停止所有移动
         if(playOnce -- >0)
             AudioManager.instance.PlaySFX(6);
-
     }
 
     public override void Update()

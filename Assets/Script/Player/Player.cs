@@ -13,6 +13,11 @@ public class Player : Entity
     public float rangedDamageMultiplier = 3.0f; // 3倍伤害
     public float defaultGravityScale; // 记录默认重力
 
+    [Header("Heal info")]
+    public float healDuration = 1.0f; // 蓄力时间 1秒
+    [Range(0,1)]
+    public float healPercent = 0.25f; // 每次回血 10%
+
     public bool isBusy { get; private set; } 
     [Header("Move info")]
     public float moveSpeed = 12f;
@@ -45,8 +50,9 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
     public PlayerJumpAttackState jumpAttackState { get; private set; }
-    public PlayerRangedAttackState rangedAttackState { get; private set; } // 新状态
+    public PlayerRangedAttackState rangedAttackState { get; private set; }
     public PlayerCounterAttack counterAttack { get; private set; }
+    public PlayerHealState healState { get; private set; } // 新增回血状态
 
 
 
@@ -73,6 +79,7 @@ public class Player : Entity
         counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
         jumpAttackState = new PlayerJumpAttackState(this, stateMachine, "JumpAttack");
         rangedAttackState = new PlayerRangedAttackState(this, stateMachine, "RangedAttack");
+        healState = new PlayerHealState(this, stateMachine, "Heal"); // 初始化回血状态
 
         deadState = new PlayerDeadState(this, stateMachine, "Die");
 

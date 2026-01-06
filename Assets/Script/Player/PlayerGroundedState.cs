@@ -41,6 +41,12 @@ public class PlayerGroundedState : PlayerState
             {
                 stateMachine.ChangeState(player.rangedAttackState);
             }
+
+            // 回血检测 (需在 Input Actions 添加 Heal 绑定)
+            if (InputManager.instance.playerActions.Player.Heal.WasPressedThisFrame())
+            {
+                stateMachine.ChangeState(player.healState);
+            }
         }
 
         if (!player.IsGroundDetected())

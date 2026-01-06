@@ -771,7 +771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &421631576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,15 +927,17 @@ MonoBehaviour:
   swordWavePrefab: {fileID: 7722172368098680182, guid: 1b30b5db5ab10ad4bb636cf302cd8348, type: 3}
   rangedDamageMultiplier: 3
   defaultGravityScale: 0
+  healDuration: 1
+  healPercent: 0.25
   moveSpeed: 10
   jumpForce: 12
   defaultMoveSpeed: 0
   defaultJumpForce: 0
   canDoubleJump: 0
   hasDoubleJumped: 0
-  dashCooldown: 5
-  dashSpeed: 20
-  dashDuration: 2
+  dashCooldown: 2
+  dashSpeed: 40
+  dashDuration: 0.3
   defaultDashSpeed: 0
 --- !u!50 &434504458
 Rigidbody2D:
@@ -2267,7 +2269,7 @@ RectTransform:
   m_Father: {fileID: 373551408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

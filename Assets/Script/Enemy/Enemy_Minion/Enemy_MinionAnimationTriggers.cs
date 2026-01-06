@@ -28,4 +28,9 @@ public class Enemy_MinionAnimationTriggers : MonoBehaviour
 
     private void CloseCounterWindow() => enemy.CloseCounterAttackWindow();
 
+    // 供动画事件调用：销毁敌人
+    public void DespawnEnemy()
+    {
+        Destroy(enemy.gameObject);
+    }
 }

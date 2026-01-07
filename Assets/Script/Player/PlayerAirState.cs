@@ -37,7 +37,15 @@ public class PlayerAirState : PlayerState
         // 远程攻击检测 (暂时绑定为 K 键，你可以改成自己想要的)
         if (InputManager.instance.playerActions.Player.RangedAttack.WasPressedThisFrame())
         {
-            stateMachine.ChangeState(player.rangedAttackState);
+            if (player.stats.HasEnoughRage(3))
+            {
+                player.stats.DecreaseRage(3);
+                stateMachine.ChangeState(player.rangedAttackState);
+            }
+            else
+            {
+                Debug.Log("Not enough Rage!");
+            }
             return;
         }
 

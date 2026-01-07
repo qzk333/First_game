@@ -33,17 +33,22 @@ public class PlayerHealState : PlayerState
             // 如果蓄力时间到了
             if (stateTimer < 0)
             {
-                // 执行回血
-                int healAmount = (int)(player.stats.maxHealth.GetValue() * player.healPercent);
-                player.stats.currentHealth += healAmount;
+                // 执行回血 (再次检查怒气，确保蓄力期间没有被扣除虽然不太可能)
+                if (player.stats.HasEnoughRage(3))
+                {
+                    player.stats.DecreaseRage(3);
+
+                    int healAmount = (int)(player.stats.maxHealth.GetValue() * player.healPercent);
+                    player.stats.currentHealth += healAmount;
                 
-                // 限制不超过最大血量
-                if (player.stats.currentHealth > player.stats.maxHealth.GetValue())
-                    player.stats.currentHealth = player.stats.maxHealth.GetValue();
+                  // 限制不超过最大血量
+                  if (player.stats.currentHealth > player.stats.maxHealth.GetValue())
+                      player.stats.currentHealth = player.stats.maxHealth.GetValue();
+                  
+                  Debug.Log($"Healed! Current Health: {player.stats.currentHealth}, Rage Left: {player.stats.currentRage}");
+                }
                 
-                // 回血完成后退出状态，或者重置计时器继续回血？
-                // 模仿空洞骑士：一次聚集回一格。松开再按？或者自动连续？
-                // 简单起见：回完一次切回 Idle，需要重新按。
+                // 回完一次切回 Idle
                 stateMachine.ChangeState(player.idleState);
             }
         }

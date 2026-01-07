@@ -30,11 +30,12 @@ public class Enemy : Entity
 
     public EnemyStateMachine stateMachine { get; private set; }
     public string lastAnimBoolName { get; private set; }
+    public EnemyStats stats;
 
     protected override void Awake()
     {
         base.Awake();
-
+        stats = GetComponent<EnemyStats>();
         stateMachine = new EnemyStateMachine();
     }
     protected override void Start()

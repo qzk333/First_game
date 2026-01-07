@@ -22,6 +22,9 @@ public class Player : Entity
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
+    
+    // 隐藏父类的 stats，使用具体的 PlayerStats 类型
+    public PlayerStats stats;
 
     public float defaultMoveSpeed;
     public float defaultJumpForce;
@@ -66,6 +69,10 @@ public class Player : Entity
         base.Awake();
 
         stateMachine = new PlayerStateMachine();
+
+        // 获取 PlayerStats 组件赋值给新的 stats 变量
+        // 这样 Player 脚本中访问 stats 时直接得到 PlayerStats 类型
+        stats = GetComponent<PlayerStats>();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");

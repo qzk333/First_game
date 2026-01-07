@@ -39,13 +39,30 @@ public class PlayerGroundedState : PlayerState
             // 远程攻击检测 (暂时绑定为 K 键)
             if (InputManager.instance.playerActions.Player.RangedAttack.WasPressedThisFrame())
             {
-                stateMachine.ChangeState(player.rangedAttackState);
+                // 检查怒气
+                if (player.stats.HasEnoughRage(3))
+                {
+                    player.stats.DecreaseRage(3);
+                    stateMachine.ChangeState(player.rangedAttackState);
+                }
+                else
+                {
+                    Debug.Log("Not enough Rage for Ranged Attack!");
+                }
             }
 
             // 回血检测 (需在 Input Actions 添加 Heal 绑定)
             if (InputManager.instance.playerActions.Player.Heal.WasPressedThisFrame())
             {
-                stateMachine.ChangeState(player.healState);
+                // 能够进入回血状态的前提是至少有3点怒气，否则不让进
+                if (player.stats.HasEnoughRage(3))
+                {
+                    stateMachine.ChangeState(player.healState);
+                }
+                else
+                {
+                   Debug.Log("Not enough Rage to start healing!");
+                }
             }
         }
 

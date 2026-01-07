@@ -20,6 +20,10 @@ public class PlayerAnimationTriggers : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 EnemyStats _target = hit.GetComponent<EnemyStats>();
+                
+                // 先加怒气，再造成伤害（防止打死后脚本失效或其他问题导致还没加怒气）
+                player.stats.IncreaseRage(1);
+                
                 player.stats.DoDamage(_target);
             }
         }
@@ -36,6 +40,10 @@ public class PlayerAnimationTriggers : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 EnemyStats _target = hit.GetComponent<EnemyStats>();
+                
+                // 反击命中也增加怒气 (先加再伤)
+                player.stats.IncreaseRage(1);
+                
                 player.stats.DoDamage(_target);
             }
         }

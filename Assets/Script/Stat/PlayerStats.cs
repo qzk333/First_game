@@ -10,6 +10,28 @@ public class PlayerStats : CharacterStats
     [Range(0f, 1f)]
     [Tooltip("反击时的伤害减免比例 (0 = 无减免, 1 = 完全格挡)")]
     [SerializeField] private float counterAttackDamageReduction = 1f; // 默认完全格挡
+
+    [Header("Rage System")]
+    public float currentRage;
+    public float maxRage = 30;
+    
+    public void IncreaseRage(float _amount)
+    {
+        currentRage += _amount;
+        if (currentRage > maxRage) currentRage = maxRage;
+        Debug.Log($"Rage Increased! Current Rage: {currentRage}");
+    }
+    
+    public void DecreaseRage(float _amount)
+    {
+        currentRage -= _amount;
+        if (currentRage < 0) currentRage = 0;
+    }
+    
+    public bool HasEnoughRage(float _amount)
+    {
+        return currentRage >= _amount;
+    }
     
     protected override void Start()
     {

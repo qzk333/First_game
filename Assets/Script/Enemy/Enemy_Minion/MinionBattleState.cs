@@ -23,47 +23,55 @@ public class MinionBattleState : EnemyState
     {
         base.Update();
 
-        if (player == null)
-            return;
+        if (player == null) return;
 
+        // 1. 视距与脱战逻辑
         if (enemy.IsPlayerDetected())
         {
             stateTimer = enemy.battleTime;
-
-            if(enemy.IsPlayerDetected().distance < enemy.attackDistance)
+            if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
-                if(CanAttack())
-                    stateMachine.ChangeState(enemy.attackState);
+                if (CanAttack()) stateMachine.ChangeState(enemy.attackState);
+                return; // 切换状态后必须 return
             }
         }
         else
         {
-            if (stateTimer < 0 || Vector2.Distance(player.transform.position,enemy.transform.position) > 10)
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 10)
+            {
                 stateMachine.ChangeState(enemy.idleState);
+                return; // return
+            }
         }
 
-        // 根据玩家位置决定移动方向和转身
-        float xDistanceToPlayer = player.position.x - enemy.transform.position.x;
-        float absDistance = Mathf.Abs(xDistanceToPlayer);
-        
-        // 如果距离太近，切换到idle状态
-        if (absDistance < 0.5f)
+        // 2. 计算移动方向
+        if (player.position.x > enemy.transform.position.x) moveDir = 1;
+        else if (player.position.x < enemy.transform.position.x) moveDir = -1;
+
+        // 3. 悬崖/墙壁检测 (防掉落核心)
+        // 注意：这里我们检测的是"前方是否有路"，如果没路，直接切 Idle 并停止
+        if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
+        {
+            // ！！！重要修改！！！
+            // 不要在这里 Flip()，否则会背对玩家，导致 GroundedState 认为背后有路从而再次进入 Battle 造成死循环
+            // 也不要继续移动
+            enemy.SetVelocity(0, rb.velocity.y); // 立即刹车
+            stateMachine.ChangeState(enemy.idleState);
+            return; // ！！！关键：必须终止代码执行，防止下面的 SetVelocity 继续生效
+        }
+
+        // 4. 转身逻辑 (只有确认前方安全才转身追击)
+        if (moveDir != enemy.facingDir)
+            enemy.Flip();
+
+        // 5. 距离太近切 Idle (防止重叠)
+        if (Mathf.Abs(player.position.x - enemy.transform.position.x) < 0.5f)
         {
             stateMachine.ChangeState(enemy.idleState);
             return;
         }
-        
-        // 根据玩家位置决定朝向
-        if (xDistanceToPlayer > 0.1f)  // 玩家在右边
-            moveDir = 1;
-        else if(xDistanceToPlayer < -0.1f)  // 玩家在左边
-            moveDir = -1;
 
-        // 确保敌人面向玩家
-        if (moveDir != enemy.facingDir)
-            enemy.Flip();
-
-        // 正常移动追踪玩家
+        // 6. 执行移动
         enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
     }
 

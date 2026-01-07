@@ -22,17 +22,8 @@ public class MinionIdleState : MinionGroundedState
 
     public override void Update()
     {
-        // 调用 EnemyState.Update() 来更新 stateTimer，但不调用 MinionGroundedState.Update()
-        // 这样避免使用 grounded 的状态转换逻辑
+        base.Update();
         stateTimer -= Time.deltaTime;
-        
-        // 检测玩家
-        Transform player = null;
-        if (PlayerManager.instance != null && PlayerManager.instance.player != null)
-            player = PlayerManager.instance.player.transform;
-            
-        if (player == null)
-            return;
         
         // 检测玩家距离
         float distanceToPlayer = Vector2.Distance(enemy.transform.position, player.position);
@@ -41,14 +32,6 @@ public class MinionIdleState : MinionGroundedState
         if (distanceToPlayer < enemy.attackDistance && CanAttack())
         {
             stateMachine.ChangeState(enemy.attackState);
-            return;
-        }
-        
-        // 使用滞后机制：只有当玩家远离（距离 > 1.5）时才切换回 battle 状态追踪
-        // 这样避免了与 battle 状态的 0.5 阈值产生频繁切换
-        if (distanceToPlayer > 1.5f)
-        {
-            stateMachine.ChangeState(enemy.battleState);
             return;
         }
         

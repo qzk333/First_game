@@ -6,6 +6,7 @@ public class MinionGroundedState : EnemyState
 {
     protected Enemy_Minion enemy;
     protected Transform player;
+
     public MinionGroundedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Minion _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.enemy = _enemy;
@@ -14,7 +15,6 @@ public class MinionGroundedState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
         if (PlayerManager.instance != null && PlayerManager.instance.player != null)
             player = PlayerManager.instance.player.transform;
     }
@@ -28,25 +28,20 @@ public class MinionGroundedState : EnemyState
     {
         base.Update();
 
-        if (player == null)
-            return;
+        if (player == null) return;
 
-        // 检测玩家距离
         float distanceToPlayer = Vector2.Distance(enemy.transform.position, player.position);
         
-        // grounded 状态用于 move 状态，检测到玩家就切换到 battle
-        if (enemy.IsPlayerDetected() || distanceToPlayer < 2)
+        // 增加高度差检测：如果玩家Y轴差距太大（比如大于2），就不进入战斗
+        bool isYClose = Mathf.Abs(enemy.transform.position.y - player.position.y) < 2f;
+
+        // 只有当：(看到玩家 或者 距离很近) 并且 (高度差不大) 时才尝试进入战斗
+        if ((enemy.IsPlayerDetected() || distanceToPlayer < 10) && isYClose)
         {
-            stateMachine.ChangeState(enemy.battleState);
+            if (!enemy.IsWallDetected() && enemy.IsGroundDetected())
+            {
+                stateMachine.ChangeState(enemy.battleState);
+            }
         }
-    }
-    
-    private bool CanAttack()
-    {
-        if(Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
-        {
-            return true;
-        }
-        return false;
     }
 }

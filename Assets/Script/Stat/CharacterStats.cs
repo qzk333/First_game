@@ -1,22 +1,21 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
     private EntityFX fx;
 
     [Header("Major stats")]
-    public Stat strength;    // 伤害+1，暴击伤�?1%
+    public Stat strength;    // 伤害+1，暴击伤害+1%
     public Stat agility;     // 敏捷（闪避）
-    // public Stat intelligence;    // 魔法伤害
     public Stat vitality;    // 回血
 
     [Header("Offensive stats")]
     public Stat damage;
-    public Stat critChance;    // 暴击�?
-    public Stat critPower;    // 暴击伤害为普通伤害的1.5�?
+    public Stat critChance;    // 暴击率
+    public Stat critPower;    // 暴击伤害为普通伤害的1.5倍
 
     [Header("Defensive stats")]
-    public Stat maxHealth;    // 血�?
+    public Stat maxHealth;    // 血量
     public Stat armor;    // 盔甲防御
     public Stat evasion;    // 闪避
     public Stat magicResistance;
@@ -49,12 +48,8 @@ public class CharacterStats : MonoBehaviour
         currentHealth = maxHealth.GetValue();
 
         fx = GetComponent<EntityFX>();
-
-        // 例如：装备青龙刀攻击 + 4
-        //damage.AddModifier(4);
     }
 
-    // @ Unity Message | 0 references
     protected virtual void Update()
     {
         ignitedTimer -= Time.deltaTime;
@@ -95,7 +90,6 @@ public class CharacterStats : MonoBehaviour
             totalDamage = CalculateCriticalDamage(totalDamage);
         }
 
-
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
     }
@@ -106,7 +100,7 @@ public class CharacterStats : MonoBehaviour
         int _iceDamage = iceDamage.GetValue();
         int _lightingDamage = lightingDamage.GetValue();
 
-        int totalMagicalDamage = _fireDamage + _iceDamage + _lightingDamage; //+ intelligence.GetValue();
+        int totalMagicalDamage = _fireDamage + _iceDamage + _lightingDamage;
 
         totalMagicalDamage = CheckTargetResistance(_targetStats, totalMagicalDamage);
 
@@ -144,7 +138,7 @@ public class CharacterStats : MonoBehaviour
         }
 
         if (canApplyIgnite)
-            _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f)); // 持续燃烧伤害为火焰伤害的20%
+            _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f));
 
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
 
@@ -165,8 +159,8 @@ public class CharacterStats : MonoBehaviour
 
         if (_ignite) 
         {
-            isIgnited = _ignite;    // 持续点燃伤害
-            ignitedTimer = ailmentsDuration;      // 设置点燃持续时间�?�?
+            isIgnited = _ignite;
+            ignitedTimer = ailmentsDuration;
             fx.IgniteFxFor(ailmentsDuration);
         }
 
@@ -192,24 +186,25 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage)
     {
-        // 如果已经死亡，不再受到伤�?
         if (isDead)
             return;
             
         currentHealth -= _damage;
 
         if (currentHealth < 0)
-        currentHealth -= _damage;
-
-
-        if (currentHealth < 0)
             Die();
+    }
+
+    public virtual void KillImmediately()
+    {
+        if (isDead) return;
+        currentHealth = 0;
+        Die();
     }
 
     protected virtual void Die()
     {
         isDead = true;
-        // throw new NotImplementedException();
     }
 
 
@@ -239,7 +234,7 @@ public class CharacterStats : MonoBehaviour
     {
         int totalCriticalChance = critChance.GetValue() + agility.GetValue();
 
-        if (Random.Range(0, 100) <= totalCriticalChance)    // 随机数实现躲�?
+        if (Random.Range(0, 100) <= totalCriticalChance)
             return true;
         
         return false;

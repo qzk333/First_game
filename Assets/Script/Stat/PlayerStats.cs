@@ -13,7 +13,7 @@ public class PlayerStats : CharacterStats
 
     [Header("Rage System")]
     public float currentRage;
-    public float maxRage = 30;
+    public float maxRage = 10;
     
     public void IncreaseRage(float _amount)
     {

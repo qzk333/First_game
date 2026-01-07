@@ -5,18 +5,18 @@ public class CharacterStats : MonoBehaviour
     private EntityFX fx;
 
     [Header("Major stats")]
-    public Stat strength;    // 伤害+1，暴击伤害+1%
+    public Stat strength;    // 伤害+1，暴击伤�?1%
     public Stat agility;     // 敏捷（闪避）
     // public Stat intelligence;    // 魔法伤害
     public Stat vitality;    // 回血
 
     [Header("Offensive stats")]
     public Stat damage;
-    public Stat critChance;    // 暴击率
-    public Stat critPower;    // 暴击伤害为普通伤害的1.5倍
+    public Stat critChance;    // 暴击�?
+    public Stat critPower;    // 暴击伤害为普通伤害的1.5�?
 
     [Header("Defensive stats")]
-    public Stat maxHealth;    // 血量
+    public Stat maxHealth;    // 血�?
     public Stat armor;    // 盔甲防御
     public Stat evasion;    // 闪避
     public Stat magicResistance;
@@ -38,11 +38,11 @@ public class CharacterStats : MonoBehaviour
     private float igniteDamageCoolDown = .3f;
     private float igniteDamageTimer;
     private int igniteDamage;
-
+    
+    public bool isDead { get; private set; }
 
     [SerializeField] public int currentHealth;
     
-    public bool isDead { get; private set; }
     protected virtual void Start()
     {
         critPower.SetDefaultValue(150);
@@ -157,6 +157,7 @@ public class CharacterStats : MonoBehaviour
         return totalMagicalDamage;
     }
 
+
     public void ApplyAilments(bool _ignite, bool _chill, bool _shock)
     {
         if (isIgnited || isChilled || isShocked)
@@ -165,7 +166,7 @@ public class CharacterStats : MonoBehaviour
         if (_ignite) 
         {
             isIgnited = _ignite;    // 持续点燃伤害
-            ignitedTimer = ailmentsDuration;      // 设置点燃持续时间为4秒
+            ignitedTimer = ailmentsDuration;      // 设置点燃持续时间�?�?
             fx.IgniteFxFor(ailmentsDuration);
         }
 
@@ -191,13 +192,17 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage)
     {
-        // 如果已经死亡，不再受到伤害
+        // 如果已经死亡，不再受到伤�?
         if (isDead)
             return;
             
         currentHealth -= _damage;
 
-        if (currentHealth <= 0)
+        if (currentHealth < 0)
+        currentHealth -= _damage;
+
+
+        if (currentHealth < 0)
             Die();
     }
 
@@ -234,7 +239,7 @@ public class CharacterStats : MonoBehaviour
     {
         int totalCriticalChance = critChance.GetValue() + agility.GetValue();
 
-        if (Random.Range(0, 100) <= totalCriticalChance)    // 随机数实现躲闪
+        if (Random.Range(0, 100) <= totalCriticalChance)    // 随机数实现躲�?
             return true;
         
         return false;

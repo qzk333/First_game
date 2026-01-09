@@ -39,8 +39,14 @@ public class PlayerGroundedState : PlayerState
             // 远程攻击检测 (暂时绑定为 K 键)
             if (InputManager.instance.playerActions.Player.RangedAttack.WasPressedThisFrame())
             {
+                // 检查远程攻击是否解锁
+                if (!player.unlockRangedAttack)
+                {
+                    // 可以选择提示玩家技能未解锁，或者什么都不做
+                    Debug.Log("Ranged Attack is locked!");
+                }
                 // 检查怒气
-                if (player.stats.HasEnoughRage(3))
+                else if (player.stats.HasEnoughRage(3))
                 {
                     player.stats.DecreaseRage(3);
                     stateMachine.ChangeState(player.rangedAttackState);

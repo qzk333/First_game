@@ -144,9 +144,17 @@ public class Player : Entity
 
     public void AnimationTrigger() => stateMachine.currentstate.AnimationFinishTrigger();
 
+    [Header("Skill Unlock Info")]
+    public bool unlockDash = false; // 默认锁定冲刺
+    public bool unlockRangedAttack = false; // 默认锁定远程攻击
+
     private void CheckForDashInput()
     {
         if (IsWallDetected())
+            return;
+
+        // 检查冲刺是否解锁
+        if (!unlockDash)
             return;
 
         dashUsageTimer -= Time.deltaTime;

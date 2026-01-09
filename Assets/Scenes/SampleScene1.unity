@@ -4037,6 +4037,7 @@ GameObject:
   - component: {fileID: 397045937}
   - component: {fileID: 397045939}
   - component: {fileID: 397045940}
+  - component: {fileID: 397045941}
   m_Layer: 0
   m_Name: RoadSign 3
   m_TagString: Untagged
@@ -4169,8 +4170,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillToUnlock: 1
-  unlockMessage: "\u5173\u7FBD\u901A\u8FC7\u78E8\u7EC3\uFF0C\u5DF2\u7ECF\u80FD\u4F7F\u7528\u9752\u9F99\u5043\u6708\u5200\u6325\u51FA\u5251\u6C14\u4E86"
+  unlockMessage: ' '
   destroyAfterTrigger: 1
+--- !u!114 &397045941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397045935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: "\u5173\u7FBD\u4E0D\u65AD\u63D0\u5347\u81EA\u5DF1\uFF0C\u73B0\u5728\u80FD\u4F7F\u7528\u9752\u9F99\u5043\u6708\u5200\u6325\u51FA\u5200\u6CE2\u4E86"
 --- !u!1 &412699686
 GameObject:
   m_ObjectHideFlags: 0
@@ -93547,6 +93561,7 @@ GameObject:
   - component: {fileID: 436976070}
   - component: {fileID: 436976072}
   - component: {fileID: 436976073}
+  - component: {fileID: 436976074}
   m_Layer: 0
   m_Name: RoadSign 2
   m_TagString: Untagged
@@ -93679,8 +93694,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillToUnlock: 0
-  unlockMessage: "\u5173\u7FBD\u7ECF\u8FC7\u78E8\u7EC3\uFF0C\u4E60\u5F97\u4E86\u51B2\u523A\u6280\u80FD"
+  unlockMessage: 
   destroyAfterTrigger: 1
+--- !u!114 &436976074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436976068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: "\u5173\u7FBD\u7ECF\u8FC7\u78E8\u7EC3\uFF0C\u4E60\u5F97\u4E86\u51B2\u523A\u6280\u80FD"
 --- !u!1001 &438523497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97352,7 +97380,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3754899567715417497, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4749750508525865871, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       propertyPath: m_Pivot.x
@@ -97448,7 +97476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021983125207084623, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8120946308925826482, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -97480,7 +97508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8742300233158754513, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

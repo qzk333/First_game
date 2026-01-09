@@ -15,7 +15,7 @@ public class MinionBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
+        stateTimer = enemy.battleTime; 
         if (PlayerManager.instance != null && PlayerManager.instance.player != null)
             player = PlayerManager.instance.player.transform;
     }

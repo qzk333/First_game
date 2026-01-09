@@ -41,6 +41,15 @@ public class Player : Entity
     public float defaultDashSpeed;
     public float dashDir { get; private set; }
 
+    [Header("Safe Position Info")]
+    public Vector3 safePosition;
+    private float safePosCheckTimer;
+
+    [Header("Fall Info")]
+    public float fallThreshold = -10.0f;
+    public int fallDamage = 10;
+
+
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -111,6 +120,58 @@ public class Player : Entity
         stateMachine.currentstate.Update();
 
         CheckForDashInput();
+
+        UpdateSafePosition();
+        CheckForFall();
+    }
+
+    private void CheckForFall()
+    {
+        if (transform.position.y < fallThreshold && !isBusy)
+        {
+            stats.TakeDamage(fallDamage);
+            RespawnAtSafePosition();
+        }
+    }
+
+    private void UpdateSafePosition()
+    {
+        safePosCheckTimer -= Time.deltaTime;
+        if (safePosCheckTimer < 0)
+        {
+            safePosCheckTimer = 1f; // Check every 1 second
+            
+            if (IsGroundDetected())
+            {
+                safePosition = transform.position;
+            }
+        }
+    }
+
+    public void RespawnAtSafePosition()
+    {
+        StartCoroutine(RespawnRoutine());
+    }
+
+    private IEnumerator RespawnRoutine()
+    {
+        isBusy = true; // 禁用输入
+        rb.velocity = Vector2.zero; // 停止移动
+        rb.gravityScale = 0; // 停止受重力影响
+
+        // 播放受击闪烁 (Entity 中已有 FlashFX，或者直接在此处调用)
+        if(fx != null)
+            fx.StartCoroutine("FlashFX");
+
+        yield return new WaitForSeconds(1.0f); // 停顿1秒
+
+        transform.position = safePosition; // 传送
+        
+        // 恢复
+        rb.gravityScale = defaultGravityScale;
+        isBusy = false;
+        
+        stateMachine.ChangeState(idleState);
     }
 
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)

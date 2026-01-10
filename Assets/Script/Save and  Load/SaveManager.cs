@@ -9,7 +9,6 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance;
 
     [SerializeField] private string fileName;
-    [SerializeField] private bool initializeDataIfNull = false;
 
     private GameData gameData;
     private List<ISaveManager> saveManagers;

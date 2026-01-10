@@ -1207,10 +1207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\u201C\u9AD8\u5B98\u539A\u7984\uFF0C\u5982\u86DB\u7F51\u822C\u7F20\u7ED5\uFF1B\u91D1\u94F6\u7F8E\u5973\uFF0C\u4F3C\u6BD2\u96FE\u822C\u8FF7\u79BB\u3002\r\n   
-    \u4F46\u67D0\u7684\u819D\u76D6\uFF0C\u8DEA\u4E0D\u5F97\u5978\u96C4\uFF1B\u67D0\u7684\u53CC\u773C\uFF0C\u53EA\u671B\u5411\u5144\u957F\u7684\u65B9\u5411\u3002\r\n   
-    \u8DEF\u9014\u9065\u8FDC\uFF0C\u5173\u5C71\u91CD\u91CD\u3002\r\n    \u51E1\u963B\u6211\u8005\uFF0C\u7686\u662F\u5200\u4E0B\u4EA1\u9B42\u3002\r\n   
-    \u8D64\u5154\u554A\uFF0C\u83AB\u8981\u56DE\u5934\u3002\u524D\u65B9\u7EB5\u662F\u5929\u5811\uFF0C\u4EA6\u8981\u8E0F\u5E73\u3002\u201D"
+  message: "\u9AD8\u5B98\u539A\u7984\uFF0C\u5982\u86DB\u7F51\u822C\u7F20\u7ED5\uFF1B\u91D1\u94F6\u7F8E\u5973\uFF0C\u4F3C\u6BD2\u96FE\u822C\u8FF7\u79BB\u3002\r\n\u4F46\u67D0\u7684\u819D\u76D6\uFF0C\u8DEA\u4E0D\u5F97\u5978\u96C4\uFF1B\u67D0\u7684\u53CC\u773C\uFF0C\u53EA\u671B\u5411\u5144\u957F\u7684\u65B9\u5411\u3002\r\n\u8DEF\u9014\u9065\u8FDC\uFF0C\u5173\u5C71\u91CD\u91CD\u3002\r\n\u51E1\u963B\u6211\u8005\uFF0C\u7686\u662F\u5200\u4E0B\u4EA1\u9B42\u3002\n\r\n
+    \u8D64\u5154\u554A\uFF0C\u83AB\u8981\u56DE\u5934\u3002\u524D\u65B9\u7EB5\u662F\u5929\u5811\uFF0C\u4EA6\u8981\u8E0F\u5E73\u3002"
   interactCue: {fileID: 1880425556}
 --- !u!61 &67066921
 BoxCollider2D:
@@ -2299,11 +2297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\u201C\u6C34\u80FD\u8F7D\u821F\uFF0C\u4EA6\u80FD\u8986\u821F\u3002\r\n   
-    \u6C49\u6C34\u6ED4\u6ED4\uFF0C\u542C\u4ECE\u67D0\u7684\u53F7\u4EE4\uFF0C\u541E\u566C\u8FD9\u4E03\u519B\u94C1\u7532\u3002\r\n   
-    \u5A01\u540D\u5DF2\u9707\u52A8\u534E\u590F\uFF0C\u6050\u60E7\u5DF2\u8513\u5EF6\u81F3\u8BB8\u660C\u3002\r\n   
-    \u7136\uFF0C\u6781\u76DB\u4E4B\u65F6\uFF0C\u4EA6\u662F\u9634\u5F71\u6700\u6D53\u4E4B\u523B\u3002\r\n   
-    \u770B\u5450\uFF0C\u90A3\u6C5F\u9762\u4E4B\u4E0A\uFF0C\u6709\u4E00\u53F6\u767D\u8863\u5C0F\u821F\uFF0C\u6B63\u6084\u65E0\u58F0\u606F\u5730\u9A76\u6765\u2026\u2026\u201D"
+  message: "\u6C34\u80FD\u8F7D\u821F\uFF0C\u4EA6\u80FD\u8986\u821F\u3002\r\n\u6C49\u6C34\u6ED4\u6ED4\uFF0C\u542C\u4ECE\u67D0\u7684\u53F7\u4EE4\uFF0C\u541E\u566C\u8FD9\u4E03\u519B\u94C1\u7532\u3002\n\r\n\u5A01\u540D\u5DF2\u9707\u52A8\u534E\u590F\uFF0C\u6050\u60E7\u5DF2\u8513\u5EF6\u81F3\u8BB8\u660C\u3002\r\n\u7136\uFF0C\u6781\u76DB\u4E4B\u65F6\uFF0C\u4EA6\u662F\u9634\u5F71\u6700\u6D53\u4E4B\u523B\u3002\n\r\n\u770B\u5450\uFF0C\u90A3\u6C5F\u9762\u4E4B\u4E0A\uFF0C\u6709\u4E00\u53F6\u767D\u8863\u5C0F\u821F\uFF0C\u6B63\u6084\u65E0\u58F0\u606F\u5730\u9A76\u6765\u2026\u2026"
   interactCue: {fileID: 1300568867}
 --- !u!61 &131880204
 BoxCollider2D:
@@ -3461,6 +3455,140 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7449227744695052838, guid: d9997400142b1f14281284870012ac00, type: 3}
   m_PrefabInstance: {fileID: 249604719}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &255360208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255360209}
+  - component: {fileID: 255360211}
+  - component: {fileID: 255360210}
+  m_Layer: 5
+  m_Name: SaveNotification
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &255360209
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255360208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 786698739}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 394, y: 219}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &255360210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255360208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\u6E38\u620F\u8FDB\u5EA6\u5DF2\u4FDD\u5B58"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 4b6176ffc6f3373429e24e20749d6b13, type: 2}
+  m_sharedMaterial: {fileID: 7825018794368540506, guid: 4b6176ffc6f3373429e24e20749d6b13, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 0.9957261, b: 0, a: 1}
+    topRight: {r: 1, g: 0.9960785, b: 0, a: 1}
+    bottomLeft: {r: 1, g: 0, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0, b: 0, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -86.133545, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &255360211
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255360208}
+  m_CullTransparentMesh: 1
 --- !u!1001 &274223206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94220,7 +94348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446176313
@@ -94245,8 +94373,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4b6176ffc6f3373429e24e20749d6b13, type: 2}
-  m_sharedMaterial: {fileID: 7825018794368540506, guid: 4b6176ffc6f3373429e24e20749d6b13, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 59387f95453302c44bd0ed18efca7331, type: 2}
+  m_sharedMaterial: {fileID: 2389859550966209121, guid: 59387f95453302c44bd0ed18efca7331, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -94270,8 +94398,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -98014,6 +98142,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4749750508525865871, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1127562956}
+    - targetCorrespondingSourceObject: {fileID: 4749750508525865871, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 255360209}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8742300233158754513, guid: 99f86f532e1fa434b93ad0bf30786c00, type: 3}
       insertIndex: -1
@@ -98049,6 +98180,8 @@ MonoBehaviour:
   messageText: {fileID: 2119274554}
   messageContainer: {fileID: 0}
   fadeDuration: 0.5
+  saveNotificationText: {fileID: 255360210}
+  saveTextDuration: 1.5
 --- !u!1001 &812497150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98453,11 +98586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\u201C\u7FA4\u96C4\u9010\u9E7F\uFF0C\u4E0D\u8FC7\u662F\u53E6\u4E00\u573A\u6743\u529B\u7684\u76DB\u5BB4\u3002\r\n   
-    \u552F\u6709\u90A3\u4E00\u4EBA\uFF0C\u5982\u9B3C\u795E\u822C\u77D7\u7ACB\u4E8E\u4E91\u7AEF\u3002\r\n   
-    \u67D0\u624B\u4E2D\u7684\u9152\u5C1A\u6E29\uFF0C\u5FC3\u4E2D\u7684\u8840\u5DF2\u6CB8\u3002\r\n   
-    \u65E2\u7136\u65E0\u4EBA\u6562\u5E94\uFF0C\u90A3\u4FBF\u7531\u67D0\u6765\u95EE\u5019\u8FD9\u4E00\u4E16\u4E4B\u96C4\u3002\r\n   
-    \u53BB\u5427\uFF0C\u8BA9\u90A3\u9AD8\u5899\u540E\u7684\u68A6\u9B47\uFF0C\u89C1\u8BC1\u9752\u9F99\u7684\u521D\u5578\u3002\u201D"
+  message: "\u7FA4\u96C4\u9010\u9E7F\uFF0C\u4E0D\u8FC7\u662F\u53E6\u4E00\u573A\u6743\u529B\u7684\u76DB\u5BB4\u3002\r\n\u552F\u6709\u90A3\u4E00\u4EBA\uFF0C\u5982\u9B3C\u795E\u822C\u77D7\u7ACB\u4E8E\u4E91\u7AEF\u3002\n\r\n\u67D0\u624B\u4E2D\u7684\u9152\u5C1A\u6E29\uFF0C\u5FC3\u4E2D\u7684\u8840\u5DF2\u6CB8\u3002\r\n\u65E2\u7136\u65E0\u4EBA\u6562\u5E94\uFF0C\u90A3\u4FBF\u7531\u67D0\u6765\u95EE\u5019\u8FD9\u4E00\u4E16\u4E4B\u96C4\u3002\n\r\n\u53BB\u5427\uFF0C\u8BA9\u90A3\u9AD8\u5899\u540E\u7684\u68A6\u9B47\uFF0C\u89C1\u8BC1\u9752\u9F99\u7684\u521D\u5578\u3002"
   interactCue: {fileID: 1927276532}
 --- !u!61 &826406142
 BoxCollider2D:
@@ -100754,11 +100883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\u201C\u70C8\u706B\u711A\u5C3D\u4E86\u8FDE\u73AF\u6218\u8239\uFF0C\u5374\u70E7\u4E0D\u5C3D\u8FD9\u4E71\u4E16\u7684\u56E0\u679C\u3002\r\n   
-    \u6614\u65E5\u7684\u9738\u4E3B\uFF0C\u5982\u4ECA\u4E0D\u8FC7\u662F\u6CE5\u6CBC\u4E2D\u6323\u624E\u7684\u56F0\u517D\u3002\r\n   
-    \u6069\u4E0E\u4E49\uFF0C\u5728\u8FD9\u8FF7\u96FE\u4E2D\u7EA0\u7F20\u4E0D\u6E05\u3002\r\n   
-    \u8FD9\u4E00\u5200\u6325\u4E0B\uFF0C\u662F\u65A9\u65AD\u8FC7\u53BB\uFF0C\u8FD8\u662F\u4E3A\u4E86\u507F\u8FD8\u65E7\u503A\uFF1F\r\n   
-    \u4ED6\u6765\u4E86\u3002\u811A\u6B65\u8E09\u8DC4\uFF0C\u5374\u4F9D\u7136\u5E26\u7740\u5E1D\u738B\u7684\u4F59\u5A01\u3002\u201D"
+  message: "\u70C8\u706B\u711A\u5C3D\u4E86\u8FDE\u73AF\u6218\u8239\uFF0C\u5374\u70E7\u4E0D\u5C3D\u8FD9\u4E71\u4E16\u7684\u56E0\u679C\u3002\r\n\u6614\u65E5\u7684\u9738\u4E3B\uFF0C\u5982\u4ECA\u4E0D\u8FC7\u662F\u6CE5\u6CBC\u4E2D\u6323\u624E\u7684\u56F0\u517D\u3002\n\r\n\u6069\u4E0E\u4E49\uFF0C\u5728\u8FD9\u8FF7\u96FE\u4E2D\u7EA0\u7F20\u4E0D\u6E05\u3002\r\n\u8FD9\u4E00\u5200\u6325\u4E0B\uFF0C\u662F\u65A9\u65AD\u8FC7\u53BB\uFF0C\u8FD8\u662F\u4E3A\u4E86\u507F\u8FD8\u65E7\u503A\uFF1F\n\r\n\u4ED6\u6765\u4E86\u3002\u811A\u6B65\u8E09\u8DC4\uFF0C\u5374\u4F9D\u7136\u5E26\u7740\u5E1D\u738B\u7684\u4F59\u5A01\u3002"
   interactCue: {fileID: 1987618878}
 --- !u!1 &1089644885
 GameObject:
@@ -106861,11 +106986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ebd5cbf705f7a4aa182339efb0c671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\u201C\u4E16\u9053\u6D51\u6D4A\uFF0C\u5982\u8FD9\u6F2B\u5929\u6C61\u96E8\u3002\r\n   
-    \u8C6A\u5F3A\u6A2A\u884C\uFF0C\u89C6\u82CD\u751F\u4E3A\u8349\u82A5\u3002\r\n   
-    \u67D0\u624B\u4E2D\u7684\u5200\uFF0C\u672C\u65E0\u6740\u610F\uFF0C\u5948\u4F55\u4E16\u4E0D\u5BB9\u4EBA\u3002\r\n   
-    \u8FD9\u4E00\u591C\uFF0C\u96E8\u6C34\u6D17\u4E0D\u51C0\u5730\u4E0A\u7684\u8840\u2026\u2026\r\n   
-    \u9003\u4EA1\uFF0C\u662F\u547D\u8FD0\u7684\u5F00\u59CB\u3002\u201D"
+  message: "\u4E16\u9053\u6D51\u6D4A\uFF0C\u5982\u8FD9\u6F2B\u5929\u6C61\u96E8\u3002\r\n\u8C6A\u5F3A\u6A2A\u884C\uFF0C\u89C6\u82CD\u751F\u4E3A\u8349\u82A5\u3002\n\r\n\u67D0\u624B\u4E2D\u7684\u5200\uFF0C\u672C\u65E0\u6740\u610F\uFF0C\u5948\u4F55\u4E16\u4E0D\u5BB9\u4EBA\u3002\r\n\u8FD9\u4E00\u591C\uFF0C\u96E8\u6C34\u6D17\u4E0D\u51C0\u5730\u4E0A\u7684\u8840\u2026\u2026\n\r\n\u9003\u4EA1\uFF0C\u662F\u547D\u8FD0\u7684\u5F00\u59CB\u3002\u201D"
   interactCue: {fileID: 1562757606}
 --- !u!61 &1703112805
 BoxCollider2D:
@@ -110188,14 +110309,14 @@ RectTransform:
   m_GameObject: {fileID: 2119274552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0875, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 786698739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90, y: -71}
+  m_AnchoredPosition: {x: 90, y: -9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119274554
@@ -110220,15 +110341,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4b6176ffc6f3373429e24e20749d6b13, type: 2}
-  m_sharedMaterial: {fileID: 7825018794368540506, guid: 4b6176ffc6f3373429e24e20749d6b13, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 59387f95453302c44bd0ed18efca7331, type: 2}
+  m_sharedMaterial: {fileID: 2389859550966209121, guid: 59387f95453302c44bd0ed18efca7331, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0.8160377, b: 0.055638883, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -110245,8 +110366,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

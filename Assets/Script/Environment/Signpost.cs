@@ -38,6 +38,18 @@ public class Signpost : MonoBehaviour
             {
                 interactCue.SetActive(true);
             }
+
+            // Auto Save
+            if (SaveManager.instance != null)
+            {
+                SaveManager.instance.SaveGame();
+            }
+
+            // Show Notification
+            if (UI_MessageOverlay.instance != null)
+            {
+                UI_MessageOverlay.instance.ShowSaveNotification();
+            }
         }
     }
 

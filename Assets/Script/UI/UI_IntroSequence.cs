@@ -25,13 +25,11 @@ public class UI_IntroSequence : MonoBehaviour, ISaveManager
     private AudioSource audioSource;
     private bool isIntroOver = false;
 
-    private void Start()
+    private void Awake()
     {
-        // 如果在 LoadData 中已经被禁用，则直接返回
-        if (!this.gameObject.activeSelf) return;
-
         audioSource = GetComponent<AudioSource>();
 
+        // Initialize to black screen state
         if (blackScreenCanvasGroup != null)
         {
             blackScreenCanvasGroup.alpha = 1;
@@ -40,31 +38,34 @@ public class UI_IntroSequence : MonoBehaviour, ISaveManager
 
         if (storyText != null) storyText.text = "";
         if (skipHintText != null) skipHintText.gameObject.SetActive(true);
-
-        if (audioSource != null && introAudio != null)
-        {
-            audioSource.clip = introAudio;
-            audioSource.volume = soundVolume;
-            audioSource.loop = true; 
-            audioSource.Play();
-        }
-
-        StartCoroutine(PlayIntroSequence());
-        StartCoroutine(BlinkSkipHint());
     }
 
     // ISaveManager Implementation
     public void LoadData(GameData _data)
     {
-        // If it's NOT the first time (e.g. Continue Game), skip the intro entirely
-        if (!_data.isFirstLoad)
+        // Only play intro if it's the first load (New Game)
+        if (_data.isFirstLoad)
         {
+            if (audioSource != null && introAudio != null)
+            {
+                audioSource.clip = introAudio;
+                audioSource.volume = soundVolume;
+                audioSource.loop = true; 
+                audioSource.Play();
+            }
+
+            StartCoroutine(PlayIntroSequence());
+            StartCoroutine(BlinkSkipHint());
+        }
+        else
+        {
+            // Skip intro otherwise
             if (blackScreenCanvasGroup != null)
             {
                 blackScreenCanvasGroup.alpha = 0;
                 blackScreenCanvasGroup.blocksRaycasts = false;
             }
-            // Disable this object effectively disabling the intro
+            
             this.gameObject.SetActive(false); 
         }
     }

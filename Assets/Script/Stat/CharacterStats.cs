@@ -42,12 +42,16 @@ public class CharacterStats : MonoBehaviour
 
     [SerializeField] public int currentHealth;
     
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         critPower.SetDefaultValue(150);
         currentHealth = maxHealth.GetValue();
-
         fx = GetComponent<EntityFX>();
+    }
+
+    protected virtual void Start()
+    {
+
     }
 
     protected virtual void Update()

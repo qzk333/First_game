@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UI_IntroSequence : MonoBehaviour
+public class UI_IntroSequence : MonoBehaviour, ISaveManager
 {
     [Header("UI Components")]
     [SerializeField] private CanvasGroup blackScreenCanvasGroup;
@@ -27,6 +27,9 @@ public class UI_IntroSequence : MonoBehaviour
 
     private void Start()
     {
+        // 如果在 LoadData 中已经被禁用，则直接返回
+        if (!this.gameObject.activeSelf) return;
+
         audioSource = GetComponent<AudioSource>();
 
         if (blackScreenCanvasGroup != null)
@@ -50,6 +53,28 @@ public class UI_IntroSequence : MonoBehaviour
         StartCoroutine(BlinkSkipHint());
     }
 
+    // ISaveManager Implementation
+    public void LoadData(GameData _data)
+    {
+        // If it's NOT the first time (e.g. Continue Game), skip the intro entirely
+        if (!_data.isFirstLoad)
+        {
+            if (blackScreenCanvasGroup != null)
+            {
+                blackScreenCanvasGroup.alpha = 0;
+                blackScreenCanvasGroup.blocksRaycasts = false;
+            }
+            // Disable this object effectively disabling the intro
+            this.gameObject.SetActive(false); 
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        // No data to save
+    }
+
+    // ... Rest of the class ...
     private IEnumerator BlinkSkipHint()
     {
         while (!isIntroOver)

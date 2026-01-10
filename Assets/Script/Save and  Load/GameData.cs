@@ -14,6 +14,9 @@ public class GameData
     
     // 输入绑定覆盖数据
     public string inputBindingOverrides;
+    
+    // Check if it's the first time loading this save file
+    public bool isFirstLoad;
 
     public GameData()
     {
@@ -22,6 +25,7 @@ public class GameData
         this.playerMaxHealth = 100;
         this.playerPosition = new SerializableVector3(0, 0, 0);
         this.inputBindingOverrides = string.Empty;
+        this.isFirstLoad = true;
     }
 }
 

@@ -27,6 +27,8 @@ public class SaveManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            saveManagers = FindAllSaveManagers();
         }
     }
 
@@ -42,6 +44,9 @@ public class SaveManager : MonoBehaviour
     
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Prevent action if not the singleton instance (double safety)
+        if (instance != this) return;
+
         // 每次加载新场景时，重新查找所有ISaveManager
         this.saveManagers = FindAllSaveManagers();
         LoadGame();
@@ -49,21 +54,28 @@ public class SaveManager : MonoBehaviour
 
     private void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        saveManagers = FindAllSaveManagers();
-
         LoadGame();
     }
 
     public void NewGame()
     {
+        // Preserve input bindings if they exist
+        string savedBindings = (gameData != null) ? gameData.inputBindingOverrides : string.Empty;
+
+        // Create fresh data
         gameData = new GameData();
+
+        // Restore bindings
+        gameData.inputBindingOverrides = savedBindings;
+
+        // Save immediately to disk so OnSceneLoaded reads this valid new state
+        dataHandler.Save(gameData);
     }
 
     public void LoadGame()
     {
         gameData = dataHandler.Load();
-
+        
         if (this.gameData == null)
         {
             Debug.Log("No saved data found!");
@@ -94,6 +106,10 @@ public class SaveManager : MonoBehaviour
         {
             saveManager.SaveData(ref gameData);
         }
+
+        // Mark that the game has now been saved at least once
+        gameData.isFirstLoad = false;
+
         dataHandler.Save(gameData);
     }
 

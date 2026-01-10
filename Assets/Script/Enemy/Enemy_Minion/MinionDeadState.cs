@@ -25,9 +25,11 @@ public class MinionDeadState : EnemyState
         stateTimer = .1f;  // ������ʬ����䣬ֵԽС������Խ��
         
         //rb.bodyType = RigidbodyType2D.Kinematic;  // 禁用物理模拟，让敌人停留在原地
+
         enemy.SetVelocity(0,rb.velocity.y); // 停止所有移动
+
         if(playOnce -- >0)
-            AudioManager.instance.PlaySFX(6);
+            AudioManager.instance.PlaySFX(9, null);
     }
 
     public override void Update()

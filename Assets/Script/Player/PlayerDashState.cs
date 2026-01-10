@@ -14,6 +14,8 @@ public class PlayerDashState : PlayerState
 
         player.rb.gravityScale = 0; // 冲刺时无视重力
         stateTimer = player.dashDuration;
+
+        AudioManager.instance.PlaySFX(5, null);
     }
 
     public override void Exit()

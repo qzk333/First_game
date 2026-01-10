@@ -27,7 +27,12 @@ public class PlayerAirState : PlayerState
             InputManager.instance.playerActions.Player.Jump.WasPressedThisFrame() && 
             !player.IsGroundDetected())
         {
-            player.PerformDoubleJump();
+            if (player.canDoubleJump) 
+            {
+                AudioManager.instance.PlaySFX(4, null, true);
+                player.PerformDoubleJump();
+            }
+            
         }
 
         // 墙壁检测 - 碰到墙壁切换到墙滑状态

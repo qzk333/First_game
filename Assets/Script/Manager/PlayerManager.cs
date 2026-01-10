@@ -17,43 +17,11 @@ public class PlayerManager : MonoBehaviour , ISaveManager
     
     public void LoadData(GameData _data)
     {
-        // Ensure player reference is set
-        if (player == null)
-            player = FindObjectOfType<Player>();
-
-        if (player != null)
-        {
-            // Only load position if it's NOT the first time (to avoid snapping to 0,0,0 on New Game)
-            if (!_data.isFirstLoad)
-            {
-                player.transform.position = _data.playerPosition.ToVector3();
-            }
-            
-            // Restore health
-            if (player.stats != null)
-            {
-                player.stats.currentHealth = _data.playerHealth;
-                player.stats.maxHealth.SetDefaultValue(_data.playerMaxHealth);
-            }
-        }
+        // TODO: 实现加载玩家数据的逻辑
     }
 
     public void SaveData(ref GameData _data)
     {
-        if (player == null)
-            player = FindObjectOfType<Player>();
-
-        if (player != null)
-        {
-            // Save position
-            _data.playerPosition = SerializableVector3.FromVector3(player.transform.position);
-            
-            // Save health
-            if (player.stats != null)
-            {
-                _data.playerHealth = player.stats.currentHealth;
-                _data.playerMaxHealth = player.stats.maxHealth.GetValue();
-            }
-        }
+        // TODO: 实现保存玩家数据的逻辑
     }
 }

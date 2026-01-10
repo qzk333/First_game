@@ -27,5 +27,8 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (xInput == 0)
             stateMachine.ChangeState(player.idleState);
+
+        if (xInput != 0)
+            AudioManager.instance.PlaySFX(3, null);
     }
 }

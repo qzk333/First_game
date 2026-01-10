@@ -7,7 +7,7 @@ public class Player : Entity
     [Header("Attack details")]
     public Vector2[] attackMovement;
     public float counterAttackDuration = .2f;
-    
+
     [Header("Ranged Attack")]
     public GameObject swordWavePrefab; // 刀波预制体
     public float rangedDamageMultiplier = 3.0f; // 3倍伤害
@@ -15,14 +15,14 @@ public class Player : Entity
 
     [Header("Heal info")]
     public float healDuration = 1.0f; // 蓄力时间 1秒
-    [Range(0,1)]
+    [Range(0, 1)]
     public float healPercent = 0.25f; // 每次回血 10%
 
-    public bool isBusy { get; private set; } 
+    public bool isBusy { get; private set; }
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
-    
+
     // 隐藏父类的 stats，使用具体的 PlayerStats 类型
     public PlayerStats stats;
 
@@ -140,7 +140,7 @@ public class Player : Entity
         if (safePosCheckTimer < 0)
         {
             safePosCheckTimer = 1f; // Check every 1 second
-            
+
             if (IsGroundDetected())
             {
                 safePosition = transform.position;
@@ -160,17 +160,17 @@ public class Player : Entity
         rb.gravityScale = 0; // 停止受重力影响
 
         // 播放受击闪烁 (Entity 中已有 FlashFX，或者直接在此处调用)
-        if(fx != null)
+        if (fx != null)
             fx.StartCoroutine("FlashFX");
 
         yield return new WaitForSeconds(1.0f); // 停顿1秒
 
         transform.position = safePosition; // 传送
-        
+
         // 恢复
         rb.gravityScale = defaultGravityScale;
         isBusy = false;
-        
+
         stateMachine.ChangeState(idleState);
     }
 
@@ -182,7 +182,7 @@ public class Player : Entity
         dashSpeed = dashSpeed * (1 - _slowPercentage);
         anim.speed = anim.speed * (1 - _slowPercentage);
 
-        Invoke("ReturnDefaultSpeed",_slowDuration);
+        Invoke("ReturnDefaultSpeed", _slowDuration);
     }
 
     protected override void ReturnDefaultSpeed()
@@ -220,12 +220,12 @@ public class Player : Entity
 
         dashUsageTimer -= Time.deltaTime;
 
-        if (InputManager.instance != null && 
-            InputManager.instance.playerActions.Player.Dash.WasPressedThisFrame() && 
+        if (InputManager.instance != null &&
+            InputManager.instance.playerActions.Player.Dash.WasPressedThisFrame() &&
             dashUsageTimer < 0)
         {
             dashUsageTimer = dashCooldown;
-            
+
             Vector2 movement = InputManager.instance.playerActions.Player.Movement.ReadValue<Vector2>();
             dashDir = movement.x;
 

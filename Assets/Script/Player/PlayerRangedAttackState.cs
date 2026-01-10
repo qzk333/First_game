@@ -12,6 +12,7 @@ public class PlayerRangedAttackState : PlayerState
     {
         base.Enter();
 
+        AudioManager.instance.PlaySFX(8, null, true);
         // 【滞空核心】
         // 瞬间停止所有移动
         player.SetVelocity(0, 0);

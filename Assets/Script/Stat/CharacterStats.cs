@@ -41,6 +41,8 @@ public class CharacterStats : MonoBehaviour
     public bool isDead { get; private set; }
 
     [SerializeField] public int currentHealth;
+
+    private bool isInvincible;
     
     protected virtual void Awake()
     {
@@ -71,7 +73,7 @@ public class CharacterStats : MonoBehaviour
         if (shockedTimer < 0)
             isShocked = false;
 
-        if (igniteDamageTimer < 0)
+        if (igniteDamageTimer < 0 && !isInvincible)
         {
             currentHealth -= igniteDamage;
             if (currentHealth <= 0)
@@ -190,7 +192,7 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage)
     {
-        if (isDead)
+        if (isDead || isInvincible)
             return;
             
         currentHealth -= _damage;
@@ -198,6 +200,8 @@ public class CharacterStats : MonoBehaviour
         if (currentHealth < 0)
             Die();
     }
+
+    public void MakeInvincible(bool value) => isInvincible = value;
 
     public virtual void KillImmediately()
     {

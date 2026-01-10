@@ -11,6 +11,8 @@ public class PlayerJumpAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.PlaySFX(0, null);
     }
 
     public override void Exit()

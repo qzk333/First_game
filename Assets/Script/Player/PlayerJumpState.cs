@@ -12,6 +12,8 @@ public class PlayerJumpState : PlayerAirState
     {
         base.Enter();
 
+        AudioManager.instance.PlaySFX(4, null);
+
         rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);
 
         player.ResetDoubleJump();
@@ -20,12 +22,15 @@ public class PlayerJumpState : PlayerAirState
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.StopSFX(4);
     }
 
     public override void Update()
     {
-        base.Update(); 
+        base.Update();
 
+   
         // 当Y轴速度为负（开始下落）时，切换到下落状态
         if (rb.velocity.y < 0)
             stateMachine.ChangeState(player.fallState);

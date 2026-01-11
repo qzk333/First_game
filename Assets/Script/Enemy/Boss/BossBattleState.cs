@@ -36,11 +36,13 @@ public class BossBattleState : BossState
             }
         }
 
-        if (boss.IsPlayerDetected())
+        float distanceToPlayer = Vector2.Distance(boss.transform.position, player.position);
+
+        if (boss.IsPlayerDetected() || distanceToPlayer < 8f)
         {
             stateTimer = boss.battleTime;
 
-            if (boss.IsPlayerDetected().distance < boss.attackDistance)
+            if (distanceToPlayer < boss.attackDistance)
             {
                 if (CanAttack())
                 {
@@ -53,6 +55,7 @@ public class BossBattleState : BossState
         {
             if (stateTimer < 0 || Vector2.Distance(player.transform.position, boss.transform.position) > 15)
             {
+                boss.SetVelocity(0, rb.velocity.y);
                 stateMachine.ChangeState(boss.idleState);
                 return;
             }
@@ -67,11 +70,16 @@ public class BossBattleState : BossState
         }
 
         // 2. Dash if cooldown ready and distance is medium
-        float distanceToPlayer = Vector2.Distance(boss.transform.position, player.position);
         if (boss.CanDash() && distanceToPlayer > 5 && distanceToPlayer < 12)
         {
             stateMachine.ChangeState(boss.dashState);
             return;
+        }
+
+        // Handle walls / ledges: flip and keep moving instead of stopping
+        if (boss.IsWallDetected() || !boss.IsGroundDetected())
+        {
+            boss.Flip();
         }
 
         // Movement Logic in Battle
@@ -79,6 +87,13 @@ public class BossBattleState : BossState
             moveDir = 1;
         else if (player.position.x < boss.transform.position.x)
             moveDir = -1;
+
+        // Too close: stay in battle but停下
+        if (distanceToPlayer < boss.attackDistance)
+        {
+            boss.SetVelocity(0, rb.velocity.y);
+            return;
+        }
 
         boss.SetVelocity(boss.moveSpeed * moveDir * 1.5f, rb.velocity.y); // Move faster in battle
     }

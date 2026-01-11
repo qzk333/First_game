@@ -25,6 +25,24 @@ public class BossSmashState : BossState
         base.Update();
 
         if (triggerCalled)
+        {
+            DoRetreatStep();
             stateMachine.ChangeState(boss.battleState);
+        }
+    }
+
+    private void DoRetreatStep()
+    {
+        Transform player = boss.GetPlayerTransform();
+        float retreatDir = -boss.facingDir; // default: step backward from current facing
+
+        if (player != null)
+        {
+            float dirFromPlayer = Mathf.Sign(boss.transform.position.x - player.position.x);
+            if (dirFromPlayer != 0)
+                retreatDir = dirFromPlayer; // move away from player
+        }
+
+        boss.transform.position += new Vector3(retreatDir * boss.retreatDistance, 0, 0);
     }
 }

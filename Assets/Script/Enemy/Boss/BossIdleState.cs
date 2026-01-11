@@ -12,6 +12,7 @@ public class BossIdleState : BossState
     {
         base.Enter();
         stateTimer = boss.idleTime;
+        boss.SetVelocity(0, 0);
     }
 
     public override void Exit()
@@ -23,11 +24,15 @@ public class BossIdleState : BossState
     {
         base.Update();
 
-        if (stateTimer < 0 && boss.IsPlayerDetected())
+        // React to player immediately (even before idle timer finishes)
+        Transform player = boss.GetPlayerTransform();
+        if (boss.IsPlayerDetected() || (player != null && Vector2.Distance(boss.transform.position, player.position) < 8f))
         {
             stateMachine.ChangeState(boss.battleState);
+            return;
         }
-        else if (stateTimer < 0)
+
+        if (stateTimer < 0)
         {
             stateMachine.ChangeState(boss.moveState);
         }

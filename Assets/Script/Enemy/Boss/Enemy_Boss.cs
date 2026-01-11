@@ -25,7 +25,9 @@ public class Enemy_Boss : Enemy
     public float smashDamageRadius = 3f;
     public int smashDamage = 20;
     public float teleportCooldown = 10f;
-    public float hoverHeight = 5f; // Height above player to reappear
+    public float hoverHeight = 3f; // Height above player to reappear
+    public float teleportOffset = 1.5f; // Horizontal offset in front of player when reappearing
+    public float retreatDistance = 2f; // Step back after smash
     [HideInInspector] public float lastTeleportTime;
 
     protected override void Awake()

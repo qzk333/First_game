@@ -22,6 +22,12 @@ public class BossMoveState : BossState
     {
         base.Update();
 
+        // If blocked/edge, flip and keep巡逻
+        if (boss.IsWallDetected() || !boss.IsGroundDetected())
+        {
+            boss.Flip();
+        }
+
         boss.SetVelocity(boss.moveSpeed * boss.facingDir, rb.velocity.y);
 
         Transform player = boss.GetPlayerTransform();

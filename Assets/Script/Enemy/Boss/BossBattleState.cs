@@ -14,12 +14,15 @@ public class BossBattleState : BossState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.PlaySFX(15, null);
         player = boss.GetPlayerTransform();
     }
 
     public override void Exit()
     {
         base.Exit();
+        //AudioManager.instance.StopSFX(15);
     }
 
     public override void Update()

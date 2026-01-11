@@ -13,11 +13,14 @@ public class BossDeadState : BossState
         base.Enter();
         boss.cd.enabled = false;
         boss.rb.gravityScale = 0;
+        AudioManager.instance.PlaySFX(6, null);
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.StopSFX(6);
     }
 
     public override void Update()

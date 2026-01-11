@@ -11,6 +11,8 @@ public class BossAttackState : BossState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.PlaySFX(14, null);
     }
 
     public override void Exit()

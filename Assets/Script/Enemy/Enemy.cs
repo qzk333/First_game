@@ -24,7 +24,7 @@ public class Enemy : Entity
 
 
     [Header("Player detection")]
-    [SerializeField] private float playerCheckDistance;
+    [SerializeField] protected float playerCheckDistance;
     [SerializeField] protected LayerMask whatIsPlayer;
 
 

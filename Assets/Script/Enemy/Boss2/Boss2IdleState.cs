@@ -2,31 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss2IdleState : EnemyState
+public class Boss2IdleState : Boss2GroundedState
 {
-    private Enemy_Boss2 enemy;
-    private Transform player;
-
-    public Boss2IdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Boss2 _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public Boss2IdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Boss2 _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
     {
-        this.enemy = _enemy;
     }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocity(0, 0); // 确保 Boss 处于静止
-        if (PlayerManager.instance != null) player = PlayerManager.instance.player.transform;
+        stateTimer = enemy.idleTime;
+        enemy.SetVelocity(0, rb.velocity.y);
     }
 
     public override void Update()
     {
         base.Update();
 
-        // 核心逻辑：只有看到玩家才会进入战斗状态
-        if (enemy.IsPlayerDetected())
+        stateTimer -= Time.deltaTime;
+
+        if (enemy.IsPlayerDetected() && enemy.CanDash())
         {
-            stateMachine.ChangeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.dashState);
+            return;
         }
+
+        float distanceToPlayer = player != null ? Vector2.Distance(enemy.transform.position, player.position) : Mathf.Infinity;
+
+        if (distanceToPlayer < enemy.attackDistance && CanAttack())
+        {
+            stateMachine.ChangeState(enemy.attackState);
+            return;
+        }
+
+        if (stateTimer < 0 && distanceToPlayer > 2f)
+        {
+            stateMachine.ChangeState(enemy.moveState);
+        }
+    }
+
+    private bool CanAttack()
+    {
+        return Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown;
     }
 }

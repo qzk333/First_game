@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Boss2BattleState : EnemyState
 {
-    private Enemy_Boss2 enemy;
     private Transform player;
+    private Enemy_Boss2 enemy;
+    private int moveDir;
 
     public Boss2BattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Boss2 _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
@@ -15,33 +16,68 @@ public class Boss2BattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        if (PlayerManager.instance != null) player = PlayerManager.instance.player.transform;
+        stateTimer = enemy.battleTime;
+
+        if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+            player = PlayerManager.instance.player.transform;
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (enemy.IsPlayerDetected())
+        if (player == null)
+            return;
+
+        RaycastHit2D playerDetected = enemy.IsPlayerDetected();
+        if (playerDetected)
         {
-            // 距离够了就攻击
-            if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
+            stateTimer = enemy.battleTime;
+            if (enemy.CanDash())
             {
-                if (CanAttack()) stateMachine.ChangeState(enemy.attackState);
+                stateMachine.ChangeState(enemy.dashState);
+                return;
+            }
+
+            if (playerDetected.distance < enemy.attackDistance && CanAttack())
+            {
+                stateMachine.ChangeState(enemy.attackState);
                 return;
             }
         }
         else
         {
-            // 失去目标回到 Idle 重新变回静止
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 10)
+            {
+                stateMachine.ChangeState(enemy.idleState);
+                return;
+            }
+        }
+
+        if (player.position.x > enemy.transform.position.x) moveDir = 1;
+        else if (player.position.x < enemy.transform.position.x) moveDir = -1;
+
+        if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
+        {
+            enemy.SetVelocity(0, rb.velocity.y);
             stateMachine.ChangeState(enemy.idleState);
             return;
         }
 
-        // 朝向玩家移动
-        float moveDir = player.position.x > enemy.transform.position.x ? 1 : -1;
+        if (moveDir != enemy.facingDir)
+            enemy.Flip();
+
+        if (Mathf.Abs(player.position.x - enemy.transform.position.x) < 0.5f)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+            return;
+        }
+
         enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
     }
 
-    private bool CanAttack() => Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown;
+    private bool CanAttack()
+    {
+        return Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown;
+    }
 }

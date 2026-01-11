@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossMoveState : BossState
@@ -22,7 +20,7 @@ public class BossMoveState : BossState
     {
         base.Update();
 
-        // If blocked/edge, flip and keep巡逻
+        // If blocked/edge, flip and keep patrol
         if (boss.IsWallDetected() || !boss.IsGroundDetected())
         {
             boss.Flip();

@@ -1,0 +1,932 @@
+fileFormatVersion: 2
+guid: 50fdc167f315ec14bae00b6217850a63
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnemyArcher1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1706.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9686153c65ecf64d9de73b276ed09a9
+      internalID: -1466227867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_1
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1706.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5969e4b52dfa34b998ab830aa31219
+      internalID: 616460769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_2
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1706.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73e47b0de72c5ea45bfeb9bfa7040fc1
+      internalID: -1017080626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_3
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1706.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79019d188c4e6eb42ae0c143fca2cf37
+      internalID: 1811295534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_4
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1706.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe92c8df6368a04ab07b8682a106bcc
+      internalID: -426600774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_5
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1706.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988bf503e852d4b459b168b3e67785c5
+      internalID: -817364020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1365.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e283ec964a2da4d98d1cf374b469ca
+      internalID: 50422341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_7
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1365.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac20c6dac74976a42ad7ae6973f79e43
+      internalID: 1727587715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_8
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1365.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a1e03dd2eac3a4e9de50ecbf2df212
+      internalID: -1903881886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_9
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1365.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca184bb916e0e0e4a80471868b534a77
+      internalID: 281107375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_10
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1365.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181ed3ed7118fad4da3100cd38a4590b
+      internalID: 196678896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_11
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1365.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 405839ca5b287e943ad5ac48e5ac8ba5
+      internalID: -1414079608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7b5b9ef0d35704594314218ceb9383
+      internalID: 459372415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_13
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1024.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 573a7eb18f9248847921eed39f14a46f
+      internalID: 810117251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_14
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1024.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ddb96b856e23994d95b1eacc8ebb2db
+      internalID: 2067715978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_15
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1024.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0e1668796af844dbe74eb2c16243d3
+      internalID: -407075505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_16
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1024.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b72cfdd2ecf0846a384bb5e7229615
+      internalID: -1727894165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_17
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1024.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d63198dc171cab24b8add1d25d093511
+      internalID: 1748380706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 683.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22b60a8d783f31d488c53651498d8405
+      internalID: -502465335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_19
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 683.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445fbec272ff29347bea54ca3e49fa9d
+      internalID: 1057920995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_20
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 683.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef25421b9f68c4489ad832bf2d14ef5
+      internalID: 271426224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_21
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 683.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c882411f4af1bbe4bb47cd6b06cd8f5a
+      internalID: 1657616231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_22
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 683.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8a561169ec62574ea0e8e71edf3d5f7
+      internalID: -594688418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_23
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 683.6666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0f03149f395d724d83ef9fb82afc662
+      internalID: 1423939807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 342.66666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0dee9baf0a7913418e72a4614d5e91a
+      internalID: 507384652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_25
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 342.66666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fc9ce1fe97c635428b690d00bbcc5e1
+      internalID: -1453415744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_26
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 342.66666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fce60f8e8ffa5b4386fe095e2a20a30
+      internalID: -1532691547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_27
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 342.66666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce022bfaccf7a64ab45c2ffde0e4c0a
+      internalID: 1416823512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_28
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 342.66666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 309532eec46bdf545bbbf096651a29d2
+      internalID: 1980335940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_29
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 342.66666
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015294176fdc7bb41a1a1d78d37d0e12
+      internalID: 1209285310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.6666565
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 304ff916cb2859045894f8e138577ac0
+      internalID: 394629137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_31
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1.6666565
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86a973f4fae58cb4b9a19cfc86307879
+      internalID: 1229728328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_32
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1.6666565
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a49b795a55a1b644ac92ada4387a03e
+      internalID: 338232973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_33
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1.6666565
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0490dad6fb38b6d4798791f40da13674
+      internalID: -1191472828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_34
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1.6666565
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343990cdc0f0e4a48bca3e5b8241cca8
+      internalID: -537249213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyArcher1_35
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1.6666565
+        width: 346.66666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7da99f582351664fa5c8c6cda310fa1
+      internalID: -1883281955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      EnemyArcher1_0: -1466227867
+      EnemyArcher1_1: 616460769
+      EnemyArcher1_10: 196678896
+      EnemyArcher1_11: -1414079608
+      EnemyArcher1_12: 459372415
+      EnemyArcher1_13: 810117251
+      EnemyArcher1_14: 2067715978
+      EnemyArcher1_15: -407075505
+      EnemyArcher1_16: -1727894165
+      EnemyArcher1_17: 1748380706
+      EnemyArcher1_18: -502465335
+      EnemyArcher1_19: 1057920995
+      EnemyArcher1_2: -1017080626
+      EnemyArcher1_20: 271426224
+      EnemyArcher1_21: 1657616231
+      EnemyArcher1_22: -594688418
+      EnemyArcher1_23: 1423939807
+      EnemyArcher1_24: 507384652
+      EnemyArcher1_25: -1453415744
+      EnemyArcher1_26: -1532691547
+      EnemyArcher1_27: 1416823512
+      EnemyArcher1_28: 1980335940
+      EnemyArcher1_29: 1209285310
+      EnemyArcher1_3: 1811295534
+      EnemyArcher1_30: 394629137
+      EnemyArcher1_31: 1229728328
+      EnemyArcher1_32: 338232973
+      EnemyArcher1_33: -1191472828
+      EnemyArcher1_34: -537249213
+      EnemyArcher1_35: -1883281955
+      EnemyArcher1_4: -426600774
+      EnemyArcher1_5: -817364020
+      EnemyArcher1_6: 50422341
+      EnemyArcher1_7: 1727587715
+      EnemyArcher1_8: -1903881886
+      EnemyArcher1_9: 281107375
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

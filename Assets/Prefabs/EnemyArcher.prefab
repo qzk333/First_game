@@ -300,7 +300,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   stats: {fileID: 0}
-  arrowPrefab: {fileID: 987083297778883385, guid: a515a10a1892a4b4d971c8313a6a356b, type: 3}
+  arrowPrefab: {fileID: 987083297778883385, guid: a0b186706db17fe4fa946f09d069c442, type: 3}
   arrowSpeed: 5
   arrowLifeTime: 4
   arrowSpawnPoint: {fileID: 3547504132344999069}

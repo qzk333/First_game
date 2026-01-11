@@ -18,15 +18,11 @@ public class Enemy_Boss2AnimationTriggers : MonoBehaviour
                 PlayerStats targetStats = hit.GetComponent<PlayerStats>();
 
                 // 【核心修改】：判断总次数是否是 3 的倍数
-                if (enemy.attackCounter % 3 == 0)
+                if (enemy.stateMachine.currentState == enemy.chargeState || (enemy.attackCounter > 0 && enemy.attackCounter % 3 == 0))
                 {
-                    // 2 倍伤害
-                    float enhancedDamage = enemy.stats.damage.GetValue() * 2;
+                    float enhancedDamage = enemy.stats.damage.GetValue() * 2f; // 2倍伤害
                     targetStats.TakeDamage(Mathf.RoundToInt(enhancedDamage));
-
-                    // 触发玩家受击效果（包含击退逻辑）
-                    player.DamageEffect();
-                    Debug.Log($"第 {enemy.attackCounter} 次攻击：骑兵重型冲击！");
+                    player.DamageEffect(); // 触发击退
                 }
                 else
                 {

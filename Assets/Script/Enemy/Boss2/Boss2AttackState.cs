@@ -15,6 +15,7 @@ public class Boss2AttackState : EnemyState
     {
         base.Enter();
         enemy.attackCounter++; // 每次进入攻击状态，计数加 1
+        AudioManager.instance.PlaySFX(enemy.attackCounter + 11, null, true);
     }
 
     public override void Exit()

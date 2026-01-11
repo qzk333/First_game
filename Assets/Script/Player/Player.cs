@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : Entity
 {
+    public static event Action OnPlayerDied;
     [Header("Attack details")]
     public Vector2[] attackMovement;
     public float counterAttackDuration = .2f;
@@ -261,6 +263,7 @@ public class Player : Entity
         base.Die();
 
         stateMachine.ChangeState(deadState);
+        OnPlayerDied?.Invoke();
     }
 
 }

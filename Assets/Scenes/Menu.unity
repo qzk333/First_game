@@ -1204,7 +1204,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 144475029}
   settingsPanel: {fileID: 342777660}
   audioMixer: {fileID: 0}
-  volumeSlider: {fileID: 0}
+  volumeSlider: {fileID: 1586620711}
 --- !u!1 &480531118
 GameObject:
   m_ObjectHideFlags: 0

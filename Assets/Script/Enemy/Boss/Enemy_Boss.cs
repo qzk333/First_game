@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy_Boss : Enemy
 {
+    public static event Action OnBoss1Defeated;
     #region States
     public BossIdleState idleState { get; private set; }
     public BossMoveState moveState { get; private set; }
@@ -60,6 +62,7 @@ public class Enemy_Boss : Enemy
     public override void Die()
     {
         base.Die();
+        OnBoss1Defeated?.Invoke();
         stateMachine.ChangeState(deadState);
     }
 

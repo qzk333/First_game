@@ -12,6 +12,7 @@ public class BossSmashState : BossState
     {
         base.Enter();
         boss.rb.gravityScale = 5; // Fall faster
+        AudioManager.instance.PlaySFX(17, null);
     }
 
     public override void Exit()

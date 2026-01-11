@@ -13,6 +13,7 @@ public class BossDashState : BossState
         base.Enter();
         boss.lastDashTime = Time.time;
         stateTimer = boss.dashDuration;
+        AudioManager.instance.PlaySFX(16, null);
         boss.stats.MakeInvincible(true); // Optional: Invincible during dash
     }
 

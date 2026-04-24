@@ -1,6 +1,6 @@
 # 三国横版动作游戏
 
-基于 **Unity 2022.3.62f2c1** + **URP** 开发的一款 2D 横版动作游戏 Demo，以三国名将 **关羽** 
+基于 **Unity 2022.3.62f2c1** + **URP** 开发的一款 2D 横版动作游戏 Demo，以三国名将 **关羽** 为主角
 
 👉 **[点击此处下载最新 Windows 试玩版 (Demo) ](https://github.com/qzk333/First_game/releases/tag/v1.0.0)**
 

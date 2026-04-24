@@ -1,6 +1,8 @@
 # 三国横版动作游戏
 
 基于 **Unity 2022.3.62f2c1** + **URP** 开发的一款 2D 横版动作游戏 Demo，以三国名将 **关羽** 为主角。
+👉 **[点击此处下载最新 Windows 试玩版 (Demo) ](https://github.com/qzk333/First_game/releases/tag/v1.0.0)**
+📺 **[点击观看 B站 游戏实机演示视频](https://www.bilibili.com/video/BV1EEraBRE2t/)**
 
 ## 游戏截图
 
@@ -63,6 +65,14 @@
 - 两种结局各有独立画面
 
 ## 如何运行
+
+### 🎮 玩家试玩 (直接玩)
+如果你只是想体验游戏，无需下载庞大的引擎和源码：
+1. 前往本项目的 **[Releases 页面](https://github.com/qzk333/First_game/releases/tag/v1.0.0)**。
+2. 下载最新的 `.zip` 压缩包。
+3. 解压到电脑的任意全英文路径文件夹中。
+4. 双击运行里面的 `.exe` 游戏程序即可开始游玩。
+*(注：由于是个人独立开发未签名，若 Windows 提示拦截，请点击“更多信息 -> 仍要运行”)*
 
 ### 环境要求
 - **Unity Hub** + **Unity Editor 2022.3.62f2c1**（或任意 2022.3 LTS 版本）

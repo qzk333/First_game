@@ -1,4 +1,4 @@
-# 三国横版动作游戏 (Three Kingdoms 2D Action Platformer)
+# 三国横版动作游戏
 
 基于 **Unity 2022.3.62f2c1** + **URP** 开发的一款 2D 横版动作游戏 Demo，以三国名将 **关羽** 为主角。
 
@@ -6,7 +6,7 @@
 
 | 主菜单 | 战斗场景 |
 |-------|---------|
-| ![Menu](Assets/Graphics/Menu/title.png) | _(待补充)_ |
+| ![Menu](images/menu.png) | ![In_Game](images/in_game.png) |
 
 ## 游戏特性
 
@@ -125,4 +125,4 @@ Assets/
 
 ## 许可
 
-本项目为个人学习 Demo，资源素材版权归各自原作者所有。
+本项目为个人学习 Demo，资源素材版权归各自原作者所有，素材大部分由gemini生成+ps润色，作为作者的首个demo，项目有待完善，欢迎大家指导。
